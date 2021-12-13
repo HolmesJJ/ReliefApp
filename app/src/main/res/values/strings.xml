@@ -8,4 +8,7 @@
     <string name="need_permissions_str">Permission Required</string>
 
     <string name="loading_tips">Loading...</string>
+
+    <string name="home">Home</string>
+    <string name="profile">Profile</string>
 </resources>

@@ -242,6 +242,10 @@ public abstract class BaseActivity<V extends ViewDataBinding, VM extends BaseVie
         EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
     }
 
+    protected V getBinding() {
+        return mBinding;
+    }
+
     protected VM getViewModel() {
         return mViewModel;
     }

@@ -34,7 +34,6 @@ public class LoadingView extends View {
         this(context, attrs, 0);
     }
 
-
     public LoadingView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
 
         super(context, attrs, defStyleAttr);
@@ -83,15 +82,11 @@ public class LoadingView extends View {
         canvas.drawArc(mRectF, 180, 179, false, mPaint);
     }
 
-
     public void start() {
-
         mObjectAnimator.start();
     }
 
-
     public void stop() {
-
         if (mObjectAnimator != null) {
             mObjectAnimator.cancel();
             mObjectAnimator.end();

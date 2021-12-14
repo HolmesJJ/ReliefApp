@@ -56,7 +56,7 @@ public class BottomBarTab extends FrameLayout {
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(size, size);
         mIcon.setImageResource(icon);
         mIcon.setLayoutParams(params);
-        mIcon.setColorFilter(ContextCompat.getColor(context, R.color.tab_unselect));
+        mIcon.setColorFilter(ContextCompat.getColor(context, R.color.silver));
         lLContainer.addView(mIcon);
 
         mTvTitle = new TextView(context);
@@ -64,7 +64,7 @@ public class BottomBarTab extends FrameLayout {
         LinearLayout.LayoutParams paramsTv = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         paramsTv.topMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 2, getResources().getDisplayMetrics());
         mTvTitle.setTextSize(10);
-        mTvTitle.setTextColor(ContextCompat.getColor(context, R.color.tab_unselect));
+        mTvTitle.setTextColor(ContextCompat.getColor(context, R.color.silver));
         mTvTitle.setLayoutParams(paramsTv);
         lLContainer.addView(mTvTitle);
 
@@ -92,11 +92,11 @@ public class BottomBarTab extends FrameLayout {
     public void setSelected(boolean selected) {
         super.setSelected(selected);
         if (selected) {
-            mIcon.setColorFilter(ContextCompat.getColor(mContext, R.color.tab_select));
-            mTvTitle.setTextColor(ContextCompat.getColor(mContext, R.color.tab_select));
+            mIcon.setColorFilter(ContextCompat.getColor(mContext, R.color.light_green));
+            mTvTitle.setTextColor(ContextCompat.getColor(mContext, R.color.light_green));
         } else {
-            mIcon.setColorFilter(ContextCompat.getColor(mContext, R.color.tab_unselect));
-            mTvTitle.setTextColor(ContextCompat.getColor(mContext, R.color.tab_unselect));
+            mIcon.setColorFilter(ContextCompat.getColor(mContext, R.color.silver));
+            mTvTitle.setTextColor(ContextCompat.getColor(mContext, R.color.silver));
         }
     }
 

@@ -9,6 +9,14 @@
 
     <string name="loading_tips">Loading...</string>
 
+    <string name="register">Register</string>
+    <string name="login">Login</string>
     <string name="home">Home</string>
     <string name="profile">Profile</string>
+
+    <string name="prompt_username">Username</string>
+    <string name="prompt_password">Password</string>
+    <string name="prompt_confirm_password">Confirm Password</string>
+    <string name="action_sign_up">Sign Up</string>
+    <string name="action_sign_in">Sign In</string>
 </resources>

@@ -28,11 +28,11 @@ public class MainViewModel extends BaseViewModel {
      */
     private void doResultErrorMsg(Result result) {
         if (result.getCode() == ResponseCode.NETWORK_ERROR) {
-            Log.i(TAG, "Network Error");
+            Log.e(TAG, "Network Error");
         } else if (result.getCode() == ResponseCode.NOT_FOUND) {
-            Log.i(TAG, "Not Found");
+            Log.e(TAG, "Not Found");
         } else {
-            Log.i(TAG, "Unknown Error");
+            Log.e(TAG, "Unknown Error");
         }
     }
 }

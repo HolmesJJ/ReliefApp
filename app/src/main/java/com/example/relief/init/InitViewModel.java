@@ -1,10 +1,12 @@
 package com.example.relief.init;
 
-import androidx.lifecycle.Lifecycle;
+import androidx.annotation.NonNull;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.OnLifecycleEvent;
 import com.example.relief.MainActivity;
 import com.example.relief.base.BaseViewModel;
+import com.example.relief.config.Config;
+import com.example.relief.ui.activity.LoginActivity;
 
 public class InitViewModel extends BaseViewModel {
 
@@ -12,14 +14,18 @@ public class InitViewModel extends BaseViewModel {
 
     private final MutableLiveData<Class> mActivityAction = new MutableLiveData<>();
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
-    private void onCreate() {
+    @Override
+    public void onCreate(@NonNull LifecycleOwner owner) {
 
     }
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
-    protected void onDestroy() {
+    @Override
+    public void onDestroy(@NonNull LifecycleOwner owner) {
 
+    }
+
+    public MutableLiveData<Class> getActivityAction() {
+        return mActivityAction;
     }
 
     public void initData() {
@@ -27,10 +33,10 @@ public class InitViewModel extends BaseViewModel {
     }
 
     private void doInitSuccess() {
-        mActivityAction.postValue(MainActivity.class);
-    }
-
-    public MutableLiveData<Class> getActivityAction() {
-        return mActivityAction;
+        if (Config.getIsLogin()) {
+            mActivityAction.postValue(MainActivity.class);
+        } else {
+            mActivityAction.postValue(LoginActivity.class);
+        }
     }
 }

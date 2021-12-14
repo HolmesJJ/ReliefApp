@@ -11,6 +11,7 @@ import androidx.databinding.Observable.OnPropertyChangedCallback;
 import androidx.databinding.ObservableBoolean;
 import androidx.databinding.ObservableField;
 import com.example.relief.listener.OnMultiClickListener;
+import com.example.relief.ui.widget.BottomBar;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -51,7 +52,7 @@ public final class ListenerUtils {
         sCallbackMap.put(baseObservable.hashCode(), propertyChangedCallback);
     }
 
-    public static void addSingalOnPropertyChangeCallback(ObservableBoolean observableBoolean,
+    public static void addSignalOnPropertyChangeCallback(ObservableBoolean observableBoolean,
                                                          final BooleanCallback callback) {
 
         if (observableBoolean == null) {
@@ -81,7 +82,7 @@ public final class ListenerUtils {
         sCallbackMap.put(observableBoolean.hashCode(), propertyChangedCallback);
     }
 
-    public static void addSingalOnPropertyChangeCallback(ObservableField<String> observable,
+    public static void addSignalOnPropertyChangeCallback(ObservableField<String> observable,
                                                          final StringCallback callback) {
 
         if (observable == null) {
@@ -193,6 +194,15 @@ public final class ListenerUtils {
             return;
         }
         view.setOnFocusChangeListener(listener);
+    }
+
+    public static void setOnTabSelectedListener(BottomBar bottomBar, BottomBar.OnTabSelectedListener
+            listener) {
+
+        if (bottomBar == null) {
+            return;
+        }
+        bottomBar.setOnTabSelectedListener(listener);
     }
 
     public static void remove(ObservableBoolean observableBoolean) {

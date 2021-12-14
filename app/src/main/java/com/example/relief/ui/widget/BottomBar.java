@@ -72,7 +72,7 @@ public class BottomBar extends LinearLayout {
                 if (pos == MIDDLE_TAB) {
                     if (mIsMiddleTabClicked) {
                         mListener.onTabReselected(pos);
-                        tab.setTabColor(ContextCompat.getColor(ContextUtils.getContext(), R.color.tab_unselect));
+                        tab.setTabColor(ContextCompat.getColor(ContextUtils.getContext(), R.color.silver));
                     } else {
                         mListener.onTabSelected(pos, mCurrentPosition);
                         tab.setTabColor(Color.RED);

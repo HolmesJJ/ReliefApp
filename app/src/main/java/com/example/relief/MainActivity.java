@@ -9,6 +9,7 @@ import com.example.relief.ui.fragment.HomeFragment;
 import com.example.relief.ui.fragment.ProfileFragment;
 import com.example.relief.ui.widget.BottomBar;
 import com.example.relief.ui.widget.BottomBarTab;
+import com.example.relief.utils.ListenerUtils;
 
 public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewModel> {
 
@@ -90,7 +91,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
     }
 
     private void setOnTabSelectedListener() {
-        getBinding().bottomBar.setOnTabSelectedListener(new BottomBar.OnTabSelectedListener() {
+        ListenerUtils.setOnTabSelectedListener(getBinding().bottomBar, new BottomBar.OnTabSelectedListener() {
             @Override
             public void onTabSelected(int position, int prePosition) {
                 replaceFragment(mFragments[position]);

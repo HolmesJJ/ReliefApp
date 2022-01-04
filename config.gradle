@@ -44,5 +44,8 @@ ext {
 
             // fastJson
             "fastJson"                   : "com.alibaba:fastjson:1.1.72.android",
+
+            // banner
+            "banner"                     : "com.youth.banner:banner:2.1.0",
     ]
 }

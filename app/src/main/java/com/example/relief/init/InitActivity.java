@@ -71,7 +71,7 @@ public class InitActivity extends BaseActivity<ActivityInitBinding, InitViewMode
 
     @Override
     protected boolean onHasPermissions() {
-        return EasyPermissions.hasPermissions(this, PERMISSIONS);
+        return EasyPermissions.hasPermissions(ContextUtils.getContext(), PERMISSIONS);
     }
 
     @Override

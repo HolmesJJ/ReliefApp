@@ -123,6 +123,10 @@ public abstract class BaseFragment<V extends ViewDataBinding, VM extends BaseVie
 
     }
 
+    protected V getBinding() {
+        return mBinding;
+    }
+
     protected VM getViewModel() {
         return mViewModel;
     }

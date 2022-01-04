@@ -18,7 +18,7 @@ import java.util.Map;
 
 public final class ListenerUtils {
 
-    private static Map<Integer, OnPropertyChangedCallback> sCallbackMap = new HashMap<>();
+    private static final Map<Integer, OnPropertyChangedCallback> CALL_BACK_MAP = new HashMap<>();
 
     private ListenerUtils() {
     }
@@ -29,7 +29,7 @@ public final class ListenerUtils {
         if (baseObservable == null) {
             return;
         }
-        OnPropertyChangedCallback onPropertyChangedCallback = sCallbackMap.get(baseObservable.hashCode());
+        OnPropertyChangedCallback onPropertyChangedCallback = CALL_BACK_MAP.get(baseObservable.hashCode());
 
         if (onPropertyChangedCallback != null) {
             baseObservable.removeOnPropertyChangedCallback(onPropertyChangedCallback);
@@ -49,7 +49,7 @@ public final class ListenerUtils {
             }
         };
         baseObservable.addOnPropertyChangedCallback(propertyChangedCallback);
-        sCallbackMap.put(baseObservable.hashCode(), propertyChangedCallback);
+        CALL_BACK_MAP.put(baseObservable.hashCode(), propertyChangedCallback);
     }
 
     public static void addSignalOnPropertyChangeCallback(ObservableBoolean observableBoolean,
@@ -58,7 +58,7 @@ public final class ListenerUtils {
         if (observableBoolean == null) {
             return;
         }
-        OnPropertyChangedCallback onPropertyChangedCallback = sCallbackMap.get(observableBoolean.hashCode());
+        OnPropertyChangedCallback onPropertyChangedCallback = CALL_BACK_MAP.get(observableBoolean.hashCode());
 
         if (onPropertyChangedCallback != null) {
             observableBoolean.removeOnPropertyChangedCallback(onPropertyChangedCallback);
@@ -69,7 +69,7 @@ public final class ListenerUtils {
             @Override
             public void onPropertyChanged(Observable observable, int i) {
 
-                if (observable == null || !(observable instanceof ObservableBoolean)) {
+                if (!(observable instanceof ObservableBoolean)) {
                     return;
                 }
                 if (callback != null) {
@@ -79,7 +79,7 @@ public final class ListenerUtils {
             }
         };
         observableBoolean.addOnPropertyChangedCallback(propertyChangedCallback);
-        sCallbackMap.put(observableBoolean.hashCode(), propertyChangedCallback);
+        CALL_BACK_MAP.put(observableBoolean.hashCode(), propertyChangedCallback);
     }
 
     public static void addSignalOnPropertyChangeCallback(ObservableField<String> observable,
@@ -88,7 +88,7 @@ public final class ListenerUtils {
         if (observable == null) {
             return;
         }
-        OnPropertyChangedCallback onPropertyChangedCallback = sCallbackMap.get(observable.hashCode());
+        OnPropertyChangedCallback onPropertyChangedCallback = CALL_BACK_MAP.get(observable.hashCode());
 
         if (onPropertyChangedCallback != null) {
             observable.removeOnPropertyChangedCallback(onPropertyChangedCallback);
@@ -98,7 +98,7 @@ public final class ListenerUtils {
             @Override
             public void onPropertyChanged(Observable observable, int i) {
 
-                if (observable == null || !(observable instanceof ObservableField)) {
+                if (!(observable instanceof ObservableField)) {
                     return;
                 }
                 if (callback != null) {
@@ -108,7 +108,7 @@ public final class ListenerUtils {
             }
         };
         observable.addOnPropertyChangedCallback(propertyChangedCallback);
-        sCallbackMap.put(observable.hashCode(), propertyChangedCallback);
+        CALL_BACK_MAP.put(observable.hashCode(), propertyChangedCallback);
     }
 
     public static void addOnPropertyChangeCallback(final BaseObservable baseObservable, final
@@ -122,9 +122,6 @@ public final class ListenerUtils {
             @Override
             public void onPropertyChanged(Observable observable, int i) {
 
-                if (baseObservable == null) {
-                    return;
-                }
                 if (callback != null) {
                     callback.callback(observable, i);
                 }
@@ -207,9 +204,7 @@ public final class ListenerUtils {
 
     public static void remove(ObservableBoolean observableBoolean) {
 
-        if (sCallbackMap != null) {
-            sCallbackMap.remove(observableBoolean.hashCode());
-        }
+        CALL_BACK_MAP.remove(observableBoolean.hashCode());
     }
 
     public interface TextChange {

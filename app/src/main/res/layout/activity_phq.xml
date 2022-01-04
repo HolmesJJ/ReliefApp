@@ -4,11 +4,11 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.relief.ui.viewmodel.HomeViewModel" />
+            type="com.example.relief.ui.viewmodel.PhqViewModel" />
     </data>
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/fl_home"
+        android:id="@+id/fl_phq"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white">
@@ -16,7 +16,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Home" />
+            android:text="PHQ" />
 
     </RelativeLayout>
 

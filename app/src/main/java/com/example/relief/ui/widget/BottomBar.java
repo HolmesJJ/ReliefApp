@@ -11,23 +11,17 @@ import android.view.ViewTreeObserver;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Interpolator;
 import android.widget.LinearLayout;
-import androidx.core.content.ContextCompat;
-import androidx.core.view.ViewCompat;
-import com.example.relief.R;
-import com.example.relief.utils.ContextUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class BottomBar extends LinearLayout {
     private static final int TRANSLATE_DURATION_MILLIS = 200;
-    private static final int MIDDLE_TAB = 2;
 
     private final Interpolator mInterpolator = new AccelerateDecelerateInterpolator();
     private boolean mVisible = true;
-    private boolean mIsMiddleTabClicked = false;
 
-    private List<BottomBarTab> mTabs = new ArrayList<>();
+    private final List<BottomBarTab> mTabs = new ArrayList<>();
 
     private LinearLayout mTabLayout;
 
@@ -69,17 +63,6 @@ public class BottomBar extends LinearLayout {
                 }
 
                 int pos = tab.getTabPosition();
-                if (pos == MIDDLE_TAB) {
-                    if (mIsMiddleTabClicked) {
-                        mListener.onTabReselected(pos);
-                        tab.setTabColor(ContextCompat.getColor(ContextUtils.getContext(), R.color.silver));
-                    } else {
-                        mListener.onTabSelected(pos, mCurrentPosition);
-                        tab.setTabColor(Color.RED);
-                    }
-                    mIsMiddleTabClicked = !mIsMiddleTabClicked;
-                    return;
-                }
                 if (mCurrentPosition == pos) {
                     mListener.onTabReselected(pos);
                 } else {
@@ -229,7 +212,7 @@ public class BottomBar extends LinearLayout {
                         .setDuration(TRANSLATE_DURATION_MILLIS)
                         .translationY(translationY);
             } else {
-                ViewCompat.setTranslationY(this, translationY);
+                this.setTranslationY(translationY);
             }
         }
     }

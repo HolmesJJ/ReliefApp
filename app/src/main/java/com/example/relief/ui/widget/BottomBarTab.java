@@ -22,8 +22,6 @@ public class BottomBarTab extends FrameLayout {
     private Context mContext;
     private int mTabPosition = -1;
 
-    private TextView mTvUnreadCount;
-
     public BottomBarTab(Context context, @DrawableRes int icon, CharSequence title) {
         this(context, null, icon, title);
     }
@@ -72,7 +70,7 @@ public class BottomBarTab extends FrameLayout {
 
         int min = dip2px(context, 20);
         int padding = dip2px(context, 5);
-        mTvUnreadCount = new TextView(context);
+        TextView mTvUnreadCount = new TextView(context);
         mTvUnreadCount.setBackgroundResource(R.drawable.bg_msg_bubble);
         mTvUnreadCount.setMinWidth(min);
         mTvUnreadCount.setTextColor(Color.WHITE);
@@ -113,10 +111,5 @@ public class BottomBarTab extends FrameLayout {
 
     private int dip2px(Context context, float dp) {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, context.getResources().getDisplayMetrics());
-    }
-
-    public void setTabColor(int color) {
-        mIcon.setColorFilter(color);
-        mTvTitle.setTextColor(color);
     }
 }

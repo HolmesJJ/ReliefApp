@@ -5,10 +5,12 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import com.example.relief.base.BaseActivity;
 import com.example.relief.databinding.ActivityMainBinding;
+import com.example.relief.ui.fragment.CheckInFragment;
 import com.example.relief.ui.fragment.HomeFragment;
 import com.example.relief.ui.fragment.ProfileFragment;
 import com.example.relief.ui.widget.BottomBar;
 import com.example.relief.ui.widget.BottomBarTab;
+import com.example.relief.utils.ContextUtils;
 import com.example.relief.utils.ListenerUtils;
 
 public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewModel> {
@@ -16,6 +18,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
     private static final String TAG = MainActivity.class.getSimpleName();
 
     private HomeFragment mHomeFragment;
+    private CheckInFragment mCheckInFragment;
     private ProfileFragment mProfileFragment;
     private Fragment[] mFragments;
 
@@ -38,8 +41,9 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
     public void initData() {
         super.initData();
         mHomeFragment = HomeFragment.newInstance();
+        mCheckInFragment = CheckInFragment.newInstance();
         mProfileFragment = ProfileFragment.newInstance();
-        mFragments = new Fragment[]{mHomeFragment, mProfileFragment};
+        mFragments = new Fragment[]{mHomeFragment, mCheckInFragment, mProfileFragment};
         addAllFragment();
         replaceFragment(mHomeFragment);
         initBottomBar();
@@ -64,13 +68,15 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
 
     private void initBottomBar() {
         getBinding().bottomBar
-                .addItem(new BottomBarTab(this, R.drawable.ic_home, getString(R.string.home)))
-                .addItem(new BottomBarTab(this, R.drawable.ic_profile, getString(R.string.profile)));
+                .addItem(new BottomBarTab(ContextUtils.getContext(), R.drawable.ic_home, getString(R.string.home)))
+                .addItem(new BottomBarTab(ContextUtils.getContext(), R.drawable.ic_check_in, getString(R.string.check_in)))
+                .addItem(new BottomBarTab(ContextUtils.getContext(), R.drawable.ic_profile, getString(R.string.profile)));
     }
 
     private void addAllFragment() {
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.rl_gui_container, mHomeFragment)
+                .add(R.id.rl_gui_container, mCheckInFragment)
                 .add(R.id.rl_gui_container, mProfileFragment)
                 .commitAllowingStateLoss();
     }
@@ -78,6 +84,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
     private void replaceFragment(Fragment fragment) {
         getSupportFragmentManager().beginTransaction()
                 .hide(mHomeFragment)
+                .hide(mCheckInFragment)
                 .hide(mProfileFragment)
                 .show(fragment)
                 .commitAllowingStateLoss();
@@ -86,6 +93,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
     private void removeAllFragment() {
         getSupportFragmentManager().beginTransaction()
                 .remove(mHomeFragment)
+                .remove(mCheckInFragment)
                 .remove(mProfileFragment)
                 .commitAllowingStateLoss();
     }

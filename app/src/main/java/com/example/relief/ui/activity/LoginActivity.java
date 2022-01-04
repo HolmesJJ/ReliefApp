@@ -49,6 +49,7 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding, LoginViewM
         setEnableSignInListener();
         setObserveListener();
         setOnClickListener();
+        doIsShowLoading();
     }
 
     @Override
@@ -111,7 +112,6 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding, LoginViewM
             @Override
             public void onMultiClick(View v) {
                 if (getViewModel() != null && getViewModel().getEnableSignIn().get()) {
-                    showLoading(false);
                     getViewModel().signIn();
                 }
             }
@@ -120,9 +120,21 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding, LoginViewM
             @Override
             public void onMultiClick(View v) {
                 if (getViewModel() != null) {
-                    showLoading(false);
                     getViewModel().signUp();
                 }
+            }
+        });
+    }
+
+    /**
+     * 控制进度圈显示
+     */
+    public void doIsShowLoading() {
+        getViewModel().isShowLoading().observe(this, isShowing -> {
+            if (isShowing) {
+                showLoading(false);
+            } else {
+                stopLoading();
             }
         });
     }

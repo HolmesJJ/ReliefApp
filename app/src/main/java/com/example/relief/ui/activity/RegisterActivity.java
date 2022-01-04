@@ -50,6 +50,7 @@ public class RegisterActivity extends BaseActivity<ActivityRegisterBinding, Regi
         setEnableSignUpListener();
         setObserveListener();
         setOnClickListener();
+        doIsShowLoading();
     }
 
     @Override
@@ -120,7 +121,6 @@ public class RegisterActivity extends BaseActivity<ActivityRegisterBinding, Regi
             @Override
             public void onMultiClick(View v) {
                 if (getViewModel() != null && getViewModel().getEnableSignUp().get()) {
-                    showLoading(false);
                     getViewModel().signUp();
                 }
             }
@@ -129,9 +129,21 @@ public class RegisterActivity extends BaseActivity<ActivityRegisterBinding, Regi
             @Override
             public void onMultiClick(View v) {
                 if (getViewModel() != null) {
-                    showLoading(false);
                     getViewModel().signIn();
                 }
+            }
+        });
+    }
+
+    /**
+     * 控制进度圈显示
+     */
+    public void doIsShowLoading() {
+        getViewModel().isShowLoading().observe(this, isShowing -> {
+            if (isShowing) {
+                showLoading(false);
+            } else {
+                stopLoading();
             }
         });
     }

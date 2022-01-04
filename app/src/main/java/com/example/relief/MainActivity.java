@@ -53,6 +53,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
     public void initViewObservable() {
         super.initViewObservable();
         setOnTabSelectedListener();
+        doIsShowLoading();
     }
 
     @Override
@@ -113,6 +114,19 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
             @Override
             public void onTabReselected(int position) {
 
+            }
+        });
+    }
+
+    /**
+     * 控制进度圈显示
+     */
+    public void doIsShowLoading() {
+        getViewModel().isShowLoading().observe(this, isShowing -> {
+            if (isShowing) {
+                showLoading(false);
+            } else {
+                stopLoading();
             }
         });
     }

@@ -22,4 +22,6 @@
     <string name="action_sign_in">Sign In</string>
 
     <string name="past_records">Past Records</string>
+    <string name="phq">Patient Health Questionnaire (PHQ)</string>
+    <string name="action_submit">Submit</string>
 </resources>

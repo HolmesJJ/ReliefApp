@@ -79,6 +79,8 @@ dependencies {
     implementation rootProject.ext.dependencies["easypermissions"]
     // fastJson
     implementation rootProject.ext.dependencies["fastJson"]
+    // Gson
+    implementation rootProject.ext.dependencies["Gson"]
     // banner
     implementation rootProject.ext.dependencies["banner"]
     testImplementation rootProject.ext.dependencies["junit"]

@@ -13,10 +13,66 @@
         android:layout_height="match_parent"
         android:background="@color/white">
 
-        <TextView
+        <LinearLayout
+            android:id="@+id/ll_question_container"
             android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_above="@id/btn_submit"
+            android:gravity="center_horizontal"
+            android:paddingTop="@dimen/dp_30">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_180"
+                android:scaleType="fitCenter"
+                android:background="@drawable/bg_phq"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/phq"
+                android:textSize="@dimen/sp_18"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/dp_20"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_question_nums"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="@dimen/dp_20"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_questions"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/dp_30"
+                android:layout_marginEnd="@dimen/dp_30"
+                android:paddingBottom="@dimen/dp_10"/>
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="PHQ" />
+            android:layout_marginStart="@dimen/dp_20"
+            android:layout_marginTop="@dimen/dp_32"
+            android:src="@drawable/ic_left"/>
+
+        <Button
+            android:id="@+id/btn_submit"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_60"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="@dimen/dp_24"
+            android:background="@drawable/bg_btn_unable_round"
+            android:stateListAnimator="@null"
+            android:text="@string/action_submit"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_20" />
 
     </RelativeLayout>
 

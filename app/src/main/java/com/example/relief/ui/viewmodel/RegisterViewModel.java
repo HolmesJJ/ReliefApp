@@ -16,6 +16,7 @@ public class RegisterViewModel extends BaseViewModel {
     private final ObservableField<String> mPassword = new ObservableField<>();
     private final ObservableField<String> mConfirmPassword = new ObservableField<>();
     private final ObservableBoolean mEnableSignUp = new ObservableBoolean();
+    private final MutableLiveData<Boolean> mIsShowLoading = new MutableLiveData<>();
 
     @Override
     public void onCreate(@NonNull LifecycleOwner owner) {
@@ -47,15 +48,21 @@ public class RegisterViewModel extends BaseViewModel {
         return mEnableSignUp;
     }
 
+    public MutableLiveData<Boolean> isShowLoading() {
+        return mIsShowLoading;
+    }
+
     public void signUp() {
         // 不允许注册
         if (!mEnableSignUp.get()) {
             return;
         }
+        mIsShowLoading.postValue(true);
         mActivityAction.postValue(MainActivity.class);
     }
 
     public void signIn() {
+        mIsShowLoading.postValue(true);
         mActivityAction.postValue(LoginActivity.class);
     }
 

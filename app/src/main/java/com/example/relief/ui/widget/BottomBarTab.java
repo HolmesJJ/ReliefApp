@@ -39,7 +39,7 @@ public class BottomBarTab extends FrameLayout {
         mContext = context;
         TypedArray typedArray = context.obtainStyledAttributes(new int[]{R.attr.selectableItemBackgroundBorderless});
         Drawable drawable = typedArray.getDrawable(0);
-        setBackgroundDrawable(drawable);
+        setBackground(drawable);
         typedArray.recycle();
 
         LinearLayout lLContainer = new LinearLayout(context);

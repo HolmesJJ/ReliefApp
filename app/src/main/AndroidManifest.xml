@@ -20,8 +20,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activity.RegisterActivity" />
+        <activity android:name=".ui.activity.ChatbotActivity" />
+        <activity android:name=".ui.activity.DetailActivity" />
+        <activity android:name=".ui.activity.EmotionActivity" />
         <activity android:name=".ui.activity.LoginActivity" />
+        <activity android:name=".ui.activity.MonitorActivity" />
+        <activity android:name=".ui.activity.PhqActivity" />
+        <activity android:name=".ui.activity.RegisterActivity" />
+        <activity android:name=".ui.activity.SentimentActivity" />
         <activity android:name=".MainActivity" />
     </application>
 

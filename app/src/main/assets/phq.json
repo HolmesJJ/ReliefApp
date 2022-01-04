@@ -1,0 +1,222 @@
+[
+  {
+    "sortNo": 1,
+    "title": "Little interest or pleasure in doing things?",
+    "components": [
+      {
+        "content": "Not at all",
+        "score": 0
+      },
+      {
+        "content": "Several days",
+        "score": 1
+      },
+      {
+        "content": "More than half the days",
+        "score": 2
+      },
+      {
+        "content": "Nearly every day",
+        "score": 3
+      }
+    ]
+  },
+  {
+    "sortNo": 2,
+    "title": "Feeling down, depressed, or hopeless?",
+    "components": [
+      {
+        "content": "Not at all",
+        "score": 0
+      },
+      {
+        "content": "Several days",
+        "score": 1
+      },
+      {
+        "content": "More than half the days",
+        "score": 2
+      },
+      {
+        "content": "Nearly every day",
+        "score": 3
+      }
+    ]
+  },
+  {
+    "sortNo": 3,
+    "title": "Trouble falling or staying asleep, or sleeping too much?",
+    "components": [
+      {
+        "content": "Not at all",
+        "score": 0
+      },
+      {
+        "content": "Several days",
+        "score": 1
+      },
+      {
+        "content": "More than half the days",
+        "score": 2
+      },
+      {
+        "content": "Nearly every day",
+        "score": 3
+      }
+    ]
+  },
+  {
+    "sortNo": 4,
+    "title": "Feeling tired or having little energy?",
+    "components": [
+      {
+        "content": "Not at all",
+        "score": 0
+      },
+      {
+        "content": "Several days",
+        "score": 1
+      },
+      {
+        "content": "More than half the days",
+        "score": 2
+      },
+      {
+        "content": "Nearly every day",
+        "score": 3
+      }
+    ]
+  },
+  {
+    "sortNo": 5,
+    "title": "Poor appetite or overeating?",
+    "components": [
+      {
+        "content": "Not at all",
+        "score": 0
+      },
+      {
+        "content": "Several days",
+        "score": 1
+      },
+      {
+        "content": "More than half the days",
+        "score": 2
+      },
+      {
+        "content": "Nearly every day",
+        "score": 3
+      }
+    ]
+  },
+  {
+    "sortNo": 6,
+    "title": "Feeling bad about yourself — or that you are a failure or have let yourself or your family down?",
+    "components": [
+      {
+        "content": "Not at all",
+        "score": 0
+      },
+      {
+        "content": "Several days",
+        "score": 1
+      },
+      {
+        "content": "More than half the days",
+        "score": 2
+      },
+      {
+        "content": "Nearly every day",
+        "score": 3
+      }
+    ]
+  },
+  {
+    "sortNo": 7,
+    "title": "Trouble concentrating on things, such as reading the newspaper or watching television?",
+    "components": [
+      {
+        "content": "Not at all",
+        "score": 0
+      },
+      {
+        "content": "Several days",
+        "score": 1
+      },
+      {
+        "content": "More than half the days",
+        "score": 2
+      },
+      {
+        "content": "Nearly every day",
+        "score": 3
+      }
+    ]
+  },
+  {
+    "sortNo": 8,
+    "title": "Moving or speaking so slowly that other people could have noticed? Or so fidgety or restless that you have been moving a lot more than usual?",
+    "components": [
+      {
+        "content": "Not at all",
+        "score": 0
+      },
+      {
+        "content": "Several days",
+        "score": 1
+      },
+      {
+        "content": "More than half the days",
+        "score": 2
+      },
+      {
+        "content": "Nearly every day",
+        "score": 3
+      }
+    ]
+  },
+  {
+    "sortNo": 9,
+    "title": "Thoughts that you would be better off dead, or thoughts of hurting yourself in some way?",
+    "components": [
+      {
+        "content": "Not at all",
+        "score": 0
+      },
+      {
+        "content": "Several days",
+        "score": 1
+      },
+      {
+        "content": "More than half the days",
+        "score": 2
+      },
+      {
+        "content": "Nearly every day",
+        "score": 3
+      }
+    ]
+  },
+  {
+    "sortNo": 10,
+    "title": "How difficult have these problems made it to do work, take care of things at home, or get along with other people?",
+    "components": [
+      {
+        "content": "Not at all",
+        "score": 0
+      },
+      {
+        "content": "Somewhat difficult",
+        "score": 0
+      },
+      {
+        "content": "Very difficult",
+        "score": 0
+      },
+      {
+        "content": "Extremely difficult",
+        "score": 0
+      }
+    ]
+  }
+]

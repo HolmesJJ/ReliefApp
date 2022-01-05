@@ -23,5 +23,21 @@
 
     <string name="past_records">Past Records</string>
     <string name="phq">Patient Health Questionnaire (PHQ)</string>
+
+    <string name="student_id">Student ID</string>
+    <string name="name">Name</string>
+    <string name="gender">Gender</string>
+    <string name="phone">Phone</string>
+    <string name="email">Email</string>
+    <string name="academic_year">Academic Year</string>
+    <string name="department">Computing</string>
+    <string name="course">Course</string>
+
+    <string name="emergency_contact">Emergency Contact</string>
+    <string name="chat_with_us">Chat with Us</string>
+
     <string name="action_submit">Submit</string>
+    <string name="action_confirm">Confirm</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="copy_success">Copy Success</string>
 </resources>

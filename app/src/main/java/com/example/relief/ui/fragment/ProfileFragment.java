@@ -1,16 +1,25 @@
 package com.example.relief.ui.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import androidx.annotation.Nullable;
 import com.example.relief.BR;
+import com.example.relief.MainActivity;
 import com.example.relief.R;
 import com.example.relief.base.BaseFragment;
 import com.example.relief.databinding.FragmentProfileBinding;
 import com.example.relief.ui.viewmodel.ProfileViewModel;
+import com.example.relief.ui.widget.ItemTextView;
+import com.example.relief.ui.widget.dialog.TextDialog;
+import com.example.relief.utils.ContextUtils;
+import com.example.relief.utils.ToastUtils;
 
 public class ProfileFragment extends BaseFragment<FragmentProfileBinding, ProfileViewModel> {
+
+    private static final String TAG = ProfileFragment.class.getSimpleName();
 
     public static ProfileFragment newInstance() {
         return new ProfileFragment();
@@ -39,5 +48,70 @@ public class ProfileFragment extends BaseFragment<FragmentProfileBinding, Profil
     @Override
     public void initData() {
         super.initData();
+
+        getBinding().itvStudentId.setLeftText(R.string.student_id).setRightText("A1234567B").setBottomLineVisible(false);
+        getBinding().itvName.setLeftText(R.string.name).setRightText("benjamin").setBottomLineVisible(false);
+        getBinding().itvGender.setLeftText(R.string.gender).setRightText("Male").setBottomLineVisible(false);
+        getBinding().itvPhone.setLeftText(R.string.phone).setRightText("98765432").setBottomLineVisible(false);
+        getBinding().itvEmail.setLeftText(R.string.email).setBottomLineVisible(false);
+        getBinding().itvAcademicYear.setLeftText(R.string.academic_year).setRightText("2").setBottomLineVisible(false);
+        getBinding().itvDepartment.setLeftText(R.string.department).setRightText("Computing").setBottomLineVisible(false);
+        getBinding().itvCourse.setLeftText(R.string.course).setRightText("Computer Science");
+
+        getBinding().itvEmergencyContact.setLeftText(R.string.emergency_contact).setRightText("65167777").setBottomLineVisible(false);
+        getBinding().itvChatWithUs.setLeftText(R.string.chat_with_us);
+    }
+
+    @Override
+    public void initViewObservable() {
+        super.initViewObservable();
+        setObserveListener();
+        setOnClickListener();
+    }
+
+    private void setObserveListener() {
+        getViewModel().getActivityAction().observe(this, activityAction -> {
+            if (getActivity() instanceof MainActivity) {
+                ((MainActivity) getActivity()).stopLoading();
+            }
+            if (activityAction != null) {
+                try {
+                    Intent intent = new Intent(getActivity(), activityAction);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+                } catch (Exception e) {
+                    ToastUtils.showShortSafe(e.getMessage());
+                }
+            } else {
+                Log.e(TAG, "activityAction is null");
+            }
+        });
+    }
+
+    private void setOnClickListener() {
+        getBinding().itvEmail.setItemClickListener(new ItemTextView.ItemClickListener() {
+            @Override
+            public void click() {
+                showEmailDialog();
+            }
+        });
+        getBinding().itvChatWithUs.setItemClickListener(new ItemTextView.ItemClickListener() {
+            @Override
+            public void click() {
+                if (getActivity() instanceof MainActivity) {
+                    ((MainActivity) getActivity()).showLoading(false);
+                }
+                getViewModel().toChatbot();
+            }
+        });
+    }
+
+    private void showEmailDialog() {
+        if (getActivity() == null) {
+            return;
+        }
+        TextDialog textDialog = new TextDialog(getActivity());
+        textDialog.show();
+        textDialog.setDialogTitle(R.string.email).setText("benjamin123@gmail.com");
     }
 }

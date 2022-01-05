@@ -11,5 +11,6 @@
     <color name="red">#FFFF0000</color>
     <color name="light_green">#FF20C793</color>
     <color name="silver">#FFCCCCCC</color>
+    <color name="light_gray">#FFEFEFEF</color>
     <color name="gray">#FFE0E0E0</color>
 </resources>

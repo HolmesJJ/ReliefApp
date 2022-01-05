@@ -1,5 +1,6 @@
 package com.example.relief.init;
 
+import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
 import com.example.relief.BR;
@@ -15,7 +16,9 @@ public class InitActivity extends BaseActivity<ActivityInitBinding, InitViewMode
 
     private static final String TAG = InitActivity.class.getSimpleName();
 
-    private static final String[] PERMISSIONS = new String[]{};
+    private static final String[] PERMISSIONS = new String[]{
+            Manifest.permission.INTERNET,
+    };
 
     @Override
     public int initContentView(Bundle savedInstanceState) {
@@ -46,11 +49,7 @@ public class InitActivity extends BaseActivity<ActivityInitBinding, InitViewMode
     public void initViewObservable() {
         super.initViewObservable();
         showLoading(false);
-        getViewModel().getActivityAction().observe(this, activityAction -> {
-            Intent intent = new Intent(ContextUtils.getContext(), activityAction);
-            startActivity(intent);
-            finish();
-        });
+        setObserveListener();
     }
 
     @Override
@@ -80,5 +79,20 @@ public class InitActivity extends BaseActivity<ActivityInitBinding, InitViewMode
         if (getViewModel() != null) {
             getViewModel().initData();
         }
+    }
+
+    private void setObserveListener() {
+        getViewModel().getActivityAction().observe(this, activityAction -> {
+            stopLoading();
+            Intent intent = new Intent(ContextUtils.getContext(), activityAction);
+            startActivity(intent);
+            finish();
+        });
+        getViewModel().isInitSuccess().observe(this, isInitSuccess -> {
+            if (!isInitSuccess) {
+                stopLoading();
+                exitApp();
+            }
+        });
     }
 }

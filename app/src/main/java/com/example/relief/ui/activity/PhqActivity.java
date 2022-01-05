@@ -53,9 +53,16 @@ public class PhqActivity extends BaseActivity<ActivityPhqBinding, PhqViewModel> 
     @Override
     public void initViewObservable() {
         super.initViewObservable();
+        // 设置是否可提交监听，以便更改登录按钮UI
         setEnableSubmitListener();
         setOnClickListener();
         doIsShowLoading();
+    }
+
+    @Override
+    protected void onDestroy() {
+        ListenerUtils.remove(getViewModel().getEnableSubmit());
+        super.onDestroy();
     }
 
     private void initQuestionNums() {
@@ -76,7 +83,7 @@ public class PhqActivity extends BaseActivity<ActivityPhqBinding, PhqViewModel> 
             @Override
             public void onItemListener(int position) {
                 mQuestionNumAdapter.notifyItemChanged(position);
-                getViewModel().getQuestions().postValue(mQuestions);
+                getViewModel().getQuestions().setValue(mQuestions);
                 getViewModel().updateSubmitBtnState();
             }
         });

@@ -7,7 +7,7 @@ import androidx.appcompat.app.AlertDialog;
 
 public abstract class BaseDialog extends AlertDialog {
 
-    protected Context mContext;
+    private final Context mContext;
 
     public BaseDialog(@NonNull Context context) {
 

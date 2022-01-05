@@ -2,7 +2,6 @@ package com.example.relief.ui.activity;
 
 import android.os.Bundle;
 import android.view.View;
-
 import com.example.relief.BR;
 import com.example.relief.R;
 import com.example.relief.base.BaseActivity;

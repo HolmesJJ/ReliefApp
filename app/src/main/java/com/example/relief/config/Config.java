@@ -13,6 +13,11 @@ public final class Config {
     private static int sUserId;
     private static String sUsername;
 
+    // OCR
+    private static String sOcrAccessToken;
+    private static long sOcrExpiredTime;
+    private static String sOcrRefreshToken;
+
     private Config() {
     }
 
@@ -48,10 +53,42 @@ public final class Config {
         loadConfig();
     }
 
+    // OCR
+    public static String getOcrAccessToken() {
+        return sOcrAccessToken;
+    }
+
+    public static void setOcrAccessToken(String ocrAccessToken) {
+        sSp.put(SpUtilKeyConstants.OCR_ACCESS_TOKEN, ocrAccessToken);
+        sOcrAccessToken = ocrAccessToken;
+    }
+
+    public static long getOcrExpiredTime() {
+        return sOcrExpiredTime;
+    }
+
+    public static void setOcrExpireTime(long ocrExpiredTime) {
+        sSp.put(SpUtilKeyConstants.OCR_EXPIRED_TIME, ocrExpiredTime);
+        sOcrExpiredTime = ocrExpiredTime;
+    }
+
+    public static String getOcrRefreshToken() {
+        return sOcrRefreshToken;
+    }
+
+    public static void setOcrRefreshToken(String ocrRefreshToken) {
+        sSp.put(SpUtilKeyConstants.OCR_REFRESH_TOKEN, ocrRefreshToken);
+        sOcrRefreshToken = ocrRefreshToken;
+    }
+
     public static void loadConfig() {
         sIsLogin = sSp.getBoolean(SpUtilKeyConstants.IS_LOGIN, false);
         sUserId = sSp.getInt(SpUtilKeyConstants.USER_ID, -1);
         sUsername = sSp.getString(SpUtilKeyConstants.USERNAME, "");
+        // OCR
+        sOcrAccessToken = sSp.getString(SpUtilKeyConstants.OCR_ACCESS_TOKEN, "");
+        sOcrRefreshToken = sSp.getString(SpUtilKeyConstants.OCR_REFRESH_TOKEN, "");
+        sOcrExpiredTime = sSp.getLong(SpUtilKeyConstants.OCR_EXPIRED_TIME, -1);
     }
 
     static {

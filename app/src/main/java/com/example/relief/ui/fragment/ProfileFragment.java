@@ -14,7 +14,6 @@ import com.example.relief.databinding.FragmentProfileBinding;
 import com.example.relief.ui.viewmodel.ProfileViewModel;
 import com.example.relief.ui.widget.ItemTextView;
 import com.example.relief.ui.widget.dialog.TextDialog;
-import com.example.relief.utils.ContextUtils;
 import com.example.relief.utils.ToastUtils;
 
 public class ProfileFragment extends BaseFragment<FragmentProfileBinding, ProfileViewModel> {

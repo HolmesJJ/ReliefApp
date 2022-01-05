@@ -50,5 +50,8 @@ ext {
 
             // banner
             "banner"                     : "com.youth.banner:banner:2.1.0",
+
+            // GIF
+            "gif"                        : "pl.droidsonroids.gif:android-gif-drawable:1.2.22",
     ]
 }

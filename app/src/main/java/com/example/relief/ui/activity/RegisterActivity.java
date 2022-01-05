@@ -46,7 +46,7 @@ public class RegisterActivity extends BaseActivity<ActivityRegisterBinding, Regi
         super.initViewObservable();
         // 设置文本变更监听
         setTextChangeListener();
-        // 设置是否可登陆监听，以便更改登录按钮UI
+        // 设置是否可注册监听，以便更改登录按钮UI
         setEnableSignUpListener();
         setObserveListener();
         setOnClickListener();

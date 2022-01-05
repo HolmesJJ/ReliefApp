@@ -24,6 +24,14 @@
     <string name="past_records">Past Records</string>
     <string name="phq">Patient Health Questionnaire (PHQ)</string>
 
+    <string name="sentiment_analytics">Sentiment Analytics</string>
+    <string name="content">Content</string>
+    <string name="suggestion">Suggestion</string>
+    <string name="click_to_upload_your_post">Click to upload your post!</string>
+    <string name="sentiment">Sentiment</string>
+    <string name="target">Target</string>
+    <string name="keyword">Keyword</string>
+
     <string name="student_id">Student ID</string>
     <string name="name">Name</string>
     <string name="gender">Gender</string>

@@ -6,8 +6,6 @@ import com.example.relief.api.model.emotion.FaceBase64Result;
 import com.example.relief.api.model.emotion.FaceUrlParameter;
 import com.example.relief.api.model.emotion.FacesUrlResult;
 import com.example.relief.api.model.ocr.AccessTokenResult;
-import com.example.relief.api.model.ocr.OcrParameter;
-import com.example.relief.api.model.ocr.OcrResult;
 import com.example.relief.api.model.sentiment.DocumentParameter;
 import com.example.relief.api.model.sentiment.SentimentParameter;
 import com.example.relief.api.model.sentiment.SentimentResult;
@@ -38,20 +36,6 @@ public final class ApiClient {
                 // 3. 官网获取的 Secret Key
                 + "&client_secret=" + Constants.OCR_SECRET_KEY)
                 .setMethod(Request.RequestMethod.POST.value());
-        return ExecutorRequest.execute(request);
-    }
-
-    @NonNull
-    public static Result<OcrResult> ocr(String image) {
-        OcrParameter ocrParameter = new OcrParameter();
-        ocrParameter.setImage(image);
-        HashMap<String, String> headers = new HashMap<>();
-        headers.put("Content-Type", "application/x-www-form-urlencoded");
-        Request request = new Request().setPath(Constants.OCR_STANDARD_URL
-                + "access_token=" + Config.getOcrAccessToken())
-                .setHeaderMap(headers)
-                .setMethod(Request.RequestMethod.POST.value())
-                .setBody(ocrParameter);
         return ExecutorRequest.execute(request);
     }
 

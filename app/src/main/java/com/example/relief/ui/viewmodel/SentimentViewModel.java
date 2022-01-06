@@ -1,11 +1,15 @@
 package com.example.relief.ui.viewmodel;
 
 import android.net.Uri;
+import android.text.TextUtils;
 import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.MutableLiveData;
+import com.alibaba.fastjson.JSON;
 import com.example.relief.api.ApiClient;
+import com.example.relief.api.model.ocr.OcrResult;
+import com.example.relief.api.model.ocr.WordResult;
 import com.example.relief.api.model.sentiment.AssessmentResult;
 import com.example.relief.api.model.sentiment.DocumentResult;
 import com.example.relief.api.model.sentiment.SentenceResult;
@@ -27,9 +31,10 @@ import com.example.relief.utils.ToastUtils;
 import java.io.InputStream;
 import java.net.URLEncoder;
 
-public class SentimentViewModel extends BaseViewModel {
+public class SentimentViewModel extends BaseViewModel implements OnTaskCompleted {
 
     private static final String TAG = SentimentViewModel.class.getSimpleName();
+    private static final int OCR_REQUEST_ID = 100;
 
     private final MutableLiveData<Uri> mImageUri = new MutableLiveData<>();
     private final MutableLiveData<String> mContent = new MutableLiveData<>();
@@ -39,13 +44,6 @@ public class SentimentViewModel extends BaseViewModel {
     private final MutableLiveData<String> mSuggestion = new MutableLiveData<>();
     private final MutableLiveData<Boolean> mIsShowLoading = new MutableLiveData<>();
 
-    private final HttpAsyncTaskPost post = new HttpAsyncTaskPost(new OnTaskCompleted() {
-        @Override
-        public void onTaskCompleted(String response, int requestId) {
-            System.out.println("OCR: " + response);
-        }
-    }, 105);
-
     @Override
     public void onCreate(@NonNull LifecycleOwner owner) {
 
@@ -54,6 +52,23 @@ public class SentimentViewModel extends BaseViewModel {
     @Override
     public void onDestroy(@NonNull LifecycleOwner owner) {
 
+    }
+
+    @Override
+    public void onTaskCompleted(String response, int requestId) {
+        OcrResult result = JSON.parseObject(response, OcrResult.class);
+        StringBuilder content = new StringBuilder();
+        for (WordResult wordResult : result.getWordsResult()) {
+            content.append(wordResult.getWords()).append(" ");
+        }
+        Log.i(TAG, "OCR: " + content);
+        if (!TextUtils.isEmpty(content.toString())) {
+            mContent.postValue(content.toString());
+            analysis(content.toString());
+        } else {
+            isShowLoading().postValue(false);
+            ToastUtils.showShortSafe("Empty content");
+        }
     }
 
     public MutableLiveData<Uri> getImageUri() {
@@ -97,14 +112,8 @@ public class SentimentViewModel extends BaseViewModel {
                     String imgStr = Base64Utils.encode(imgData);
                     String imgParam = URLEncoder.encode(imgStr, "UTF-8");
                     String param = "image=" + imgParam;
-                    post.execute(Constants.OCR_WEB_IMAGE_URL + "access_token=" + Config.getOcrAccessToken(), param);
-//                    Result<OcrResult> result = ApiClient.ocr(param);
-//                    if (result.isSuccess()) {
-//                        OcrResult body = result.getBody(OcrResult.class);
-//                        Log.i(TAG, "OCR: " + body);
-//                    }
-                    mContent.postValue("The exam is fucking hard.");
-                    analysis("The exam is fucking hard.");
+                    HttpAsyncTaskPost post = new HttpAsyncTaskPost(SentimentViewModel.this, OCR_REQUEST_ID);
+                    post.execute(Constants.OCR_STANDARD_URL + "access_token=" + Config.getOcrAccessToken(), param);
                 } catch (Exception e) {
                     isShowLoading().postValue(false);
                     ToastUtils.showShortSafe("OCR Error");
@@ -144,6 +153,7 @@ public class SentimentViewModel extends BaseViewModel {
                             mSuggestion.postValue("There is hope, even when your brain tells you there isn’t.");
                         }
                     }
+                    Config.setSentimentDone(true);
                     isShowLoading().postValue(false);
                 } else {
                     isShowLoading().postValue(false);

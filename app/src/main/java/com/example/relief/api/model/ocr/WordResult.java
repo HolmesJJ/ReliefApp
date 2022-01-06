@@ -4,23 +4,23 @@ import androidx.annotation.NonNull;
 
 public class WordResult {
 
-    private String word;
+    private String words;
 
     public WordResult() {
     }
 
-    public String getWord() {
-        return word;
+    public String getWords() {
+        return words;
     }
 
-    public void setWord(String word) {
-        this.word = word;
+    public void setWords(String words) {
+        this.words = words;
     }
 
     @NonNull
 
     @Override
     public String toString() {
-        return "WordResult{" + "word='" + word + '\'' + '}';
+        return "WordResult{" + "words='" + words + '\'' + '}';
     }
 }

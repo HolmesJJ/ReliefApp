@@ -1,25 +1,31 @@
 package com.example.relief.api.model.ocr;
 
 import androidx.annotation.NonNull;
+import com.alibaba.fastjson.annotation.JSONField;
 
 import java.math.BigInteger;
 import java.util.List;
 
 public class OcrResult {
 
-    private BigInteger logLd;
+    @JSONField(name = "log_id")
+    private BigInteger logId;
+
+    @JSONField(name = "words_result")
     private List<WordResult> wordsResult;
+
+    @JSONField(name = "words_result_num")
     private BigInteger wordsResultNum;
 
     public OcrResult() {
     }
 
-    public BigInteger getLogLd() {
-        return logLd;
+    public BigInteger getLogId() {
+        return logId;
     }
 
-    public void setLogLd(BigInteger logLd) {
-        this.logLd = logLd;
+    public void setLogId(BigInteger logId) {
+        this.logId = logId;
     }
 
     public void setWordsResult(List<WordResult> wordsResult) {
@@ -42,7 +48,7 @@ public class OcrResult {
 
     @Override
     public String toString() {
-        return "OcrResult{" + "logLd=" + logLd + ", wordsResult=" + wordsResult
+        return "OcrResult{" + "logId=" + logId + ", wordsResult=" + wordsResult
                 + ", wordsResultNum=" + wordsResultNum + '}';
     }
 }

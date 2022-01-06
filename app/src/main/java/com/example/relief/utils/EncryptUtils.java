@@ -79,7 +79,7 @@ public final class EncryptUtils {
             SecretKeySpec keyspec = new SecretKeySpec(this.key.getBytes(), "AES");
             cipher.init(1, keyspec);
             byte[] encrypted = cipher.doFinal(plainText.getBytes());
-            return Base64.encodeToString(encrypted, 2);
+            return Base64.encodeToString(encrypted, Base64.NO_WRAP);
         } catch (Exception var5) {
             var5.printStackTrace();
             return null;
@@ -110,7 +110,7 @@ public final class EncryptUtils {
             SecretKeySpec keyspec = new SecretKeySpec(this.key.getBytes(), "AES");
             cipher.init(1, keyspec, parameterSpec);
             byte[] encrypted = cipher.doFinal(plainText.getBytes());
-            return Base64.encodeToString(encrypted, 2);
+            return Base64.encodeToString(encrypted, Base64.NO_WRAP);
         } catch (Exception var6) {
             var6.printStackTrace();
             return null;

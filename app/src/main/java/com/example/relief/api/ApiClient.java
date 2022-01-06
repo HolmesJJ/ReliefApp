@@ -1,6 +1,10 @@
 package com.example.relief.api;
 
 import androidx.annotation.NonNull;
+import com.example.relief.api.model.emotion.FaceBase64Parameter;
+import com.example.relief.api.model.emotion.FaceBase64Result;
+import com.example.relief.api.model.emotion.FaceUrlParameter;
+import com.example.relief.api.model.emotion.FacesUrlResult;
 import com.example.relief.api.model.ocr.AccessTokenResult;
 import com.example.relief.api.model.ocr.OcrParameter;
 import com.example.relief.api.model.ocr.OcrResult;
@@ -68,6 +72,36 @@ public final class ApiClient {
                 .setHeaderMap(headers)
                 .setMethod(Request.RequestMethod.POST.value())
                 .setBody(sentimentParameter);
+        return ExecutorRequest.execute(request);
+    }
+
+    @NonNull
+    public static Result<FaceBase64Result> uploadFace(String base64) {
+        FaceBase64Parameter faceBase64Parameter = new FaceBase64Parameter();
+        faceBase64Parameter.setId(1);
+        faceBase64Parameter.setBase64(base64);
+        Request request = new Request().setPath(Constants.UPLOAD_FACE_URL)
+                .setMethod(Request.RequestMethod.POST.value())
+                .setBody(faceBase64Parameter);
+        return ExecutorRequest.execute(request);
+    }
+
+    @NonNull
+    public static Result<FacesUrlResult> emotionAnalysis() {
+        FaceUrlParameter faceUrlParameter = new FaceUrlParameter();
+        faceUrlParameter.setUrl("https://cdn.discordapp.com/attachments/499918830999699470/928554855428153374/1.jpeg");
+        HashMap<String, String> headers = new HashMap<>();
+        headers.put(Constants.EMOTION_KEY_CONTENT_TYPE, Constants.EMOTION_KEY_1);
+        Request request = new Request().setPath(Constants.EMOTION_URL
+                // https://docs.microsoft.com/en-us/azure/cognitive-services/face/face-api-how-to-topics/specify-detection-model
+                + "detectionModel=" + "detection_01"
+                + "&returnFaceId=" + "true"
+                + "&returnFaceLandmarks=" + "false"
+                + "&returnFaceAttributes=" + "age,gender,headPose,smile,facialHair,glasses,emotion,hair,"
+                + "makeup,occlusion,accessories,blur,exposure,noise")
+                .setHeaderMap(headers)
+                .setMethod(Request.RequestMethod.POST.value())
+                .setBody(faceUrlParameter);
         return ExecutorRequest.execute(request);
     }
 }

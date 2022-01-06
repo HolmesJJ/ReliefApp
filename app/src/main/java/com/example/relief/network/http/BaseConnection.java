@@ -170,7 +170,12 @@ public abstract class BaseConnection {
             if (connection.getResponseCode() == successCode) {
                 is = connection.getInputStream();
                 resultStr = readDataFromStream(is);
-                result = JSON.parseObject(resultStr, Result.class);
+                if (resultStr.charAt(0) == '[') {
+                    resultStr = "{" + "\"list\":" + resultStr + "}";
+                    result = JSON.parseObject(resultStr, Result.class);
+                } else {
+                    result = JSON.parseObject(resultStr, Result.class);
+                }
             } else {
                 is = connection.getErrorStream();
                 resultStr = readDataFromStream(is);
@@ -292,7 +297,12 @@ public abstract class BaseConnection {
             if (connection.getResponseCode() == successCode) {
                 is = connection.getInputStream();
                 resultStr = readDataFromStream(is);
-                result = JSON.parseObject(resultStr, Result.class);
+                if (resultStr.charAt(0) == '[') {
+                    resultStr = "{" + "\"list\":" + resultStr + "}";
+                    result = JSON.parseObject(resultStr, Result.class);
+                } else {
+                    result = JSON.parseObject(resultStr, Result.class);
+                }
             } else {
                 is = connection.getErrorStream();
                 resultStr = readDataFromStream(is);

@@ -1,6 +1,5 @@
 package com.example.relief.init;
 
-import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
 import com.example.relief.BR;
@@ -17,7 +16,8 @@ public class InitActivity extends BaseActivity<ActivityInitBinding, InitViewMode
     private static final String TAG = InitActivity.class.getSimpleName();
 
     private static final String[] PERMISSIONS = new String[]{
-            Manifest.permission.INTERNET,
+            android.Manifest.permission.INTERNET,
+            android.Manifest.permission.CAMERA,
     };
 
     @Override

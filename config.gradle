@@ -7,7 +7,7 @@ ext {
     android = [
             applicationId    : "com.example.subtitletool",
             compileSdkVersion: 31,
-            minSdkVersion    : 23,
+            minSdkVersion    : 24,
             targetSdkVersion : 31,
             checkStyleVersion: '9.2',
     ]
@@ -53,5 +53,8 @@ ext {
 
             // GIF
             "gif"                        : "pl.droidsonroids.gif:android-gif-drawable:1.2.22",
+
+            // firebase
+            "firebase-face-detection"    : "com.google.mlkit:face-detection:16.1.3",
     ]
 }

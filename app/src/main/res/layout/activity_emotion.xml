@@ -11,12 +11,161 @@
         android:id="@+id/fl_emotion"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white">
+        android:background="@color/white"
+        xmlns:FixedAspectRatioRelativeLayout="http://schemas.android.com/apk/res-auto">
 
-        <TextView
+        <LinearLayout
+            android:id="@+id/ll_emotion_container"
             android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/dp_70">
+
+            <com.example.relief.ui.widget.FixedAspectRatioRelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                FixedAspectRatioRelativeLayout:aspect_ratio_height="640"
+                FixedAspectRatioRelativeLayout:aspect_ratio_width="480">
+
+                <TextureView
+                    android:id="@+id/tv_front_camera"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+                <SurfaceView
+                    android:id="@+id/sfv_overlap"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+            </com.example.relief.ui.widget.FixedAspectRatioRelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/emotion_analytics"
+                android:textSize="@dimen/sp_20"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/dp_20"/>
+
+            <ScrollView
+                android:id="@+id/sv_analysis_result"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_20"
+                        android:layout_marginStart="@dimen/dp_24"
+                        android:text="@string/suggestion"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp_20" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="@dimen/dp_10"
+                        android:layout_marginStart="@dimen/dp_48"
+                        android:layout_marginEnd="@dimen/dp_48">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/emotion"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/sp_16" />
+
+                        <TextView
+                            android:id="@+id/tv_emotion"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:textSize="@dimen/sp_16" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="@dimen/dp_10"
+                        android:layout_marginStart="@dimen/dp_48"
+                        android:layout_marginEnd="@dimen/dp_48">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/smile"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/sp_16" />
+
+                        <TextView
+                            android:id="@+id/tv_smile"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:textSize="@dimen/sp_16" />
+
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_150"
+                        android:layout_marginStart="@dimen/dp_24"
+                        android:layout_marginTop="@dimen/dp_10"
+                        android:layout_marginEnd="@dimen/dp_24"
+                        android:layout_marginBottom="@dimen/dp_30"
+                        android:background="@drawable/bg_rectangle_round">
+
+                        <TextView
+                            android:id="@+id/tv_suggestion"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="@dimen/dp_10"
+                            android:layout_marginTop="@dimen/dp_10"
+                            android:layout_marginEnd="@dimen/dp_10"
+                            android:layout_marginBottom="@dimen/dp_10"
+                            android:background="@null"
+                            android:gravity="start|top"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/sp_18" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </ScrollView>
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/iv_test"
+            android:layout_width="@dimen/dp_150"
+            android:layout_height="@dimen/dp_150"
+            android:layout_alignParentEnd="true"
+            android:visibility="gone"/>
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Emotion" />
+            android:layout_marginStart="@dimen/dp_20"
+            android:layout_marginTop="@dimen/dp_32"
+            android:src="@drawable/ic_left"/>
 
     </RelativeLayout>
 

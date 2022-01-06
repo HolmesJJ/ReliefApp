@@ -5,7 +5,9 @@ import androidx.databinding.ObservableBoolean;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.MutableLiveData;
 import com.example.relief.base.BaseViewModel;
-import com.example.relief.model.Question;
+import com.example.relief.config.Config;
+import com.example.relief.model.phq.Question;
+import com.example.relief.thread.ThreadManager;
 import com.example.relief.utils.ToastUtils;
 
 import java.util.List;
@@ -14,6 +16,7 @@ public class PhqViewModel extends BaseViewModel {
 
     private final MutableLiveData<List<Question>> mQuestions = new MutableLiveData<>();
     private final ObservableBoolean mEnableSubmit = new ObservableBoolean();
+    private final MutableLiveData<Boolean> mIsSubmitted = new MutableLiveData<>();
     private final MutableLiveData<Boolean> mIsShowLoading = new MutableLiveData<>();
 
     @Override
@@ -34,6 +37,10 @@ public class PhqViewModel extends BaseViewModel {
         return mEnableSubmit;
     }
 
+    public MutableLiveData<Boolean> isSubmitted() {
+        return mIsSubmitted;
+    }
+
     public MutableLiveData<Boolean> isShowLoading() {
         return mIsShowLoading;
     }
@@ -44,8 +51,21 @@ public class PhqViewModel extends BaseViewModel {
             return;
         }
         mIsShowLoading.postValue(true);
-        ToastUtils.showShortSafe("Submitted");
-        mIsShowLoading.postValue(false);
+        // 模拟提交
+        ThreadManager.getThreadPollProxy().execute(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(2000);
+                } catch (Exception e) {
+                    e.fillInStackTrace();
+                }
+                Config.setPhqDone(true);
+                ToastUtils.showShortSafe("Submitted");
+                mIsSubmitted.postValue(true);
+                mIsShowLoading.postValue(false);
+            }
+        });
     }
 
     public void updateSubmitBtnState() {

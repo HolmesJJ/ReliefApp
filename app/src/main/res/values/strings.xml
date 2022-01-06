@@ -20,8 +20,27 @@
     <string name="prompt_confirm_password">Confirm Password</string>
     <string name="action_sign_up">Sign Up</string>
     <string name="action_sign_in">Sign In</string>
+    <string name="action_sign_out">Sign Out</string>
 
     <string name="past_records">Past Records</string>
+    <string name="check_in_sentence_1">You have checked in</string>
+    <string name="check_in_sentence_2">regularly</string>
+    <string name="check_in_sentence_3">today</string>
+
+    <string name="not_check_in_sentence_1">You have</string>
+    <string name="not_check_in_sentence_2">not</string>
+    <string name="not_check_in_sentence_3">checked in</string>
+    <string name="not_check_in_sentence_4">today.</string>
+    <string name="not_check_in_sentence_5">Cheer up!</string>
+
+    <string name="weekly_summary">Weekly Summary</string>
+    <string name="monthly_summary">Monthly Summary</string>
+
+    <string name="results">Results</string>
+    <string name="details">Details</string>
+    <string name="low">Low</string>
+    <string name="high">High</string>
+
     <string name="phq">Patient Health Questionnaire (PHQ)</string>
 
     <string name="sentiment_analytics">Sentiment Analytics</string>
@@ -34,6 +53,12 @@
     <string name="keyword">Keyword</string>
     <string name="emotion">Emotion</string>
     <string name="smile">Smile</string>
+
+    <string name="multiple_monitor_indicators">Multiple Monitor Indicators</string>
+    <string name="sleep_quality_score">Sleep Quality Score</string>
+    <string name="heart_rate_score">Heart Rate Score</string>
+    <string name="stress_type">Stress Type</string>
+    <string name="stress_level">Stress Level</string>
 
     <string name="student_id">Student ID</string>
     <string name="name">Name</string>

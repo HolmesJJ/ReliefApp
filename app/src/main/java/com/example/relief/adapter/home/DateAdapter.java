@@ -1,4 +1,4 @@
-package com.example.relief.adapter.phq;
+package com.example.relief.adapter.home;
 
 import android.content.Context;
 import android.view.View;
@@ -7,28 +7,28 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.relief.R;
 import com.example.relief.adapter.BaseAdapter;
 import com.example.relief.adapter.ViewHolder;
-import com.example.relief.model.phq.Question;
+import com.example.relief.model.home.DateOfMonth;
 
 import java.util.List;
 
-public class QuestionNumAdapter extends BaseAdapter<Question> {
+public class DateAdapter extends BaseAdapter<DateOfMonth> {
 
     private final OnItemListener onItemListener;
 
-    public QuestionNumAdapter(Context context, List<Question> questions, OnItemListener onItemListener) {
-        super(context, questions);
+    public DateAdapter(Context context, List<DateOfMonth> dateOfMonths, OnItemListener onItemListener) {
+        super(context, dateOfMonths);
         this.onItemListener = onItemListener;
     }
 
     @Override
     public void onBindContentViews(RecyclerView.ViewHolder holder, int position) {
-        Question question = getData().get(position);
         ViewHolder viewHolder = (ViewHolder) holder;
+        DateOfMonth dateOfMonth = getData().get(position);
+        viewHolder.setText(R.id.tv_date, dateOfMonth.getDate());
+        viewHolder.setText(R.id.tv_day, dateOfMonth.getWeekDate());
+        viewHolder.setBackgroundRes(R.id.vSelected, dateOfMonth.getType() == 1 ? R.drawable.bg_select_dot : R.drawable.bg_dot);
 
-        viewHolder.setText(R.id.tv_num, position + 1 + "");
-        viewHolder.setVisible(R.id.v_selected, question.isSelected());
-
-        viewHolder.setOnClickListener(R.id.ll_num, new View.OnClickListener() {
+        viewHolder.setOnClickListener(R.id.ll_date_container, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (onItemListener != null) {
@@ -40,7 +40,7 @@ public class QuestionNumAdapter extends BaseAdapter<Question> {
 
     @Override
     public RecyclerView.ViewHolder initContentViews(ViewGroup parent, int viewType) {
-        return ViewHolder.createViewHolder(getContext(), parent, R.layout.item_question_num);
+        return ViewHolder.createViewHolder(getContext(), parent, R.layout.item_date);
     }
 
     public interface OnItemListener {

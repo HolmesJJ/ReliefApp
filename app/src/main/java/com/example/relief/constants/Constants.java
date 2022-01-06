@@ -5,9 +5,10 @@ public final class Constants {
     public static final int PERMISSION_REQUEST_CODE = 101;
 
     // Server
-    public static final String SERVER_URL = "http://47.241.162.204/api/";
-    public static final String UPLOAD_FACE_URL = SERVER_URL + "upload_face.php";
-    public static final String FACE_DIRECTORY_URL = SERVER_URL + "face/";
+    public static final String HTTP_SERVER_URL = "http://47.241.162.204/api/";
+    public static final String HTTPS_SERVER_URL = "https://9c62-47-241-162-204.ngrok.io/api/";
+    public static final String UPLOAD_FACE_URL = HTTP_SERVER_URL + "upload_face.php";
+    public static final String FACE_DIRECTORY_URL = HTTPS_SERVER_URL + "face/";
 
     // OCR
     public static final String ACCESS_TOKE_URL = "https://aip.baidubce.com/oauth/2.0/token?";

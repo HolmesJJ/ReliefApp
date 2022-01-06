@@ -42,17 +42,20 @@ ext {
             "lifecycle-reactivestreams"  : "androidx.lifecycle:lifecycle-reactivestreams:$dependVersion.lifecycle_version",
             "arch-core-testing"          : "androidx.arch.core:core-testing:$dependVersion.arch_version",
 
-            // fastJson
-            "fastJson"                   : "com.alibaba:fastjson:1.1.72.android",
+            // fastjson
+            "fastjson"                   : "com.alibaba:fastjson:1.1.72.android",
 
-            // Gson
-            "Gson"                       : "com.squareup.retrofit2:converter-gson:2.3.0",
+            // gson
+            "gson"                       : "com.squareup.retrofit2:converter-gson:2.3.0",
 
             // banner
             "banner"                     : "com.youth.banner:banner:2.1.0",
 
-            // GIF
+            // gif
             "gif"                        : "pl.droidsonroids.gif:android-gif-drawable:1.2.22",
+
+            // glide
+            "glide"                      : "com.github.bumptech.glide:glide:4.12.0",
 
             // firebase
             "firebase-face-detection"    : "com.google.mlkit:face-detection:16.1.3",

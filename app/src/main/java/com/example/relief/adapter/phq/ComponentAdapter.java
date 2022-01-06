@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.relief.R;
 import com.example.relief.adapter.BaseAdapter;
 import com.example.relief.adapter.ViewHolder;
-import com.example.relief.model.Component;
+import com.example.relief.model.phq.Component;
 
 import java.util.List;
 
@@ -25,16 +25,16 @@ public class ComponentAdapter extends BaseAdapter<Component> {
         Component component = getData().get(position);
         ViewHolder viewHolder = (ViewHolder) holder;
 
-        viewHolder.setText(R.id.tvContent, component.getContent());
+        viewHolder.setText(R.id.tv_content, component.getContent());
         if (component.isSelected()) {
-            viewHolder.setBackgroundRes(R.id.tvContent, R.drawable.bg_component_select_round);
-            viewHolder.setTextColorRes(R.id.tvContent, R.color.white);
+            viewHolder.setBackgroundRes(R.id.tv_content, R.drawable.bg_component_select_round);
+            viewHolder.setTextColorRes(R.id.tv_content, R.color.white);
         } else {
-            viewHolder.setBackgroundRes(R.id.tvContent, R.drawable.bg_component_unselect_round);
-            viewHolder.setTextColorRes(R.id.tvContent, R.color.black);
+            viewHolder.setBackgroundRes(R.id.tv_content, R.drawable.bg_component_unselect_round);
+            viewHolder.setTextColorRes(R.id.tv_content, R.color.black);
         }
 
-        viewHolder.setOnClickListener(R.id.tvContent, new View.OnClickListener() {
+        viewHolder.setOnClickListener(R.id.tv_content, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 for (int i = 0; i < getData().size(); i++) {

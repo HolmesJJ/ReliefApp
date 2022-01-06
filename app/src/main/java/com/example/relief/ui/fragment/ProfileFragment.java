@@ -4,16 +4,21 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.Nullable;
+import com.bumptech.glide.Glide;
 import com.example.relief.BR;
 import com.example.relief.MainActivity;
 import com.example.relief.R;
 import com.example.relief.base.BaseFragment;
+import com.example.relief.config.Config;
 import com.example.relief.databinding.FragmentProfileBinding;
+import com.example.relief.listener.OnMultiClickListener;
 import com.example.relief.ui.viewmodel.ProfileViewModel;
 import com.example.relief.ui.widget.ItemTextView;
 import com.example.relief.ui.widget.dialog.TextDialog;
+import com.example.relief.utils.ListenerUtils;
 import com.example.relief.utils.ToastUtils;
 
 public class ProfileFragment extends BaseFragment<FragmentProfileBinding, ProfileViewModel> {
@@ -47,6 +52,9 @@ public class ProfileFragment extends BaseFragment<FragmentProfileBinding, Profil
     @Override
     public void initData() {
         super.initData();
+
+        String avatar = "https://cdn.discordapp.com/attachments/499918830999699470/928643427694940160/holmesjj.png";
+        Glide.with(this).load(avatar).circleCrop().into(getBinding().ivAvatar);
 
         getBinding().itvStudentId.setLeftText(R.string.student_id).setRightText("A1234567B").setBottomLineVisible(false);
         getBinding().itvName.setLeftText(R.string.name).setRightText("benjamin").setBottomLineVisible(false);
@@ -101,6 +109,20 @@ public class ProfileFragment extends BaseFragment<FragmentProfileBinding, Profil
                     ((MainActivity) getActivity()).showLoading(false);
                 }
                 getViewModel().toChatbot();
+            }
+        });
+        ListenerUtils.setOnClickListener(getBinding().btnSignOut, new OnMultiClickListener() {
+            @Override
+            public void onMultiClick(View v) {
+                Config.setUserId(-1);
+                Config.setPhqDone(false);
+                Config.setEmotionDone(false);
+                Config.setSentimentDone(false);
+                Config.setMonitorDone(false);
+                Config.setLogin(false);
+                if (getActivity() instanceof MainActivity) {
+                    ((MainActivity) getActivity()).exitApp();
+                }
             }
         });
     }

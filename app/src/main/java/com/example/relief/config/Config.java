@@ -18,14 +18,20 @@ public final class Config {
     private static long sOcrExpiredTime;
     private static String sOcrRefreshToken;
 
+    // Mock Data
+    private static boolean sIsPhqDone;
+    private static boolean sIsEmotionDone;
+    private static boolean sIsSentimentDone;
+    private static boolean sIsMonitorDone;
+
     private Config() {
     }
 
-    public static boolean getIsLogin() {
+    public static boolean isLogin() {
         return sIsLogin;
     }
 
-    public static void setIsLogin(boolean isLogin) {
+    public static void setLogin(boolean isLogin) {
         sSp.put(SpUtilKeyConstants.IS_LOGIN, isLogin);
         sIsLogin = isLogin;
     }
@@ -81,6 +87,43 @@ public final class Config {
         sOcrRefreshToken = ocrRefreshToken;
     }
 
+    // Mock Data
+    public static boolean isPhqDone() {
+        return sIsPhqDone;
+    }
+
+    public static void setPhqDone(boolean isPhqDone) {
+        sSp.put(SpUtilKeyConstants.IS_PHQ_DONE, isPhqDone);
+        sIsPhqDone = isPhqDone;
+    }
+
+    public static boolean isEmotionDone() {
+        return sIsEmotionDone;
+    }
+
+    public static void setEmotionDone(boolean isEmotionDone) {
+        sSp.put(SpUtilKeyConstants.IS_EMOTION_DONE, isEmotionDone);
+        sIsEmotionDone = isEmotionDone;
+    }
+
+    public static boolean isSentimentDone() {
+        return sIsSentimentDone;
+    }
+
+    public static void setSentimentDone(boolean isSentimentDone) {
+        sSp.put(SpUtilKeyConstants.IS_SENTIMENT_DONE, isSentimentDone);
+        sIsSentimentDone = isSentimentDone;
+    }
+
+    public static boolean isMonitorDone() {
+        return sIsMonitorDone;
+    }
+
+    public static void setMonitorDone(boolean isMonitorDone) {
+        sSp.put(SpUtilKeyConstants.IS_MONITOR_DONE, isMonitorDone);
+        sIsMonitorDone = isMonitorDone;
+    }
+
     public static void loadConfig() {
         sIsLogin = sSp.getBoolean(SpUtilKeyConstants.IS_LOGIN, false);
         sUserId = sSp.getInt(SpUtilKeyConstants.USER_ID, -1);
@@ -89,6 +132,11 @@ public final class Config {
         sOcrAccessToken = sSp.getString(SpUtilKeyConstants.OCR_ACCESS_TOKEN, "");
         sOcrRefreshToken = sSp.getString(SpUtilKeyConstants.OCR_REFRESH_TOKEN, "");
         sOcrExpiredTime = sSp.getLong(SpUtilKeyConstants.OCR_EXPIRED_TIME, -1);
+        // Mock Data
+        sIsPhqDone = sSp.getBoolean(SpUtilKeyConstants.IS_PHQ_DONE, false);
+        sIsEmotionDone = sSp.getBoolean(SpUtilKeyConstants.IS_EMOTION_DONE, false);
+        sIsSentimentDone = sSp.getBoolean(SpUtilKeyConstants.IS_SENTIMENT_DONE, false);
+        sIsMonitorDone = sSp.getBoolean(SpUtilKeyConstants.IS_MONITOR_DONE, false);
     }
 
     static {

@@ -5,12 +5,14 @@ import android.view.View;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import com.example.relief.BR;
 import com.example.relief.R;
+import com.example.relief.adapter.phq.ComponentAdapter;
 import com.example.relief.adapter.phq.QuestionAdapter;
 import com.example.relief.adapter.phq.QuestionNumAdapter;
 import com.example.relief.base.BaseActivity;
 import com.example.relief.databinding.ActivityPhqBinding;
 import com.example.relief.listener.OnMultiClickListener;
-import com.example.relief.model.Question;
+import com.example.relief.model.phq.Component;
+import com.example.relief.model.phq.Question;
 import com.example.relief.ui.viewmodel.PhqViewModel;
 import com.example.relief.utils.ContextUtils;
 import com.example.relief.utils.ListenerUtils;
@@ -55,6 +57,7 @@ public class PhqActivity extends BaseActivity<ActivityPhqBinding, PhqViewModel> 
         super.initViewObservable();
         // 设置是否可提交监听，以便更改登录按钮UI
         setEnableSubmitListener();
+        setObserveListener();
         setOnClickListener();
         doIsShowLoading();
     }
@@ -66,7 +69,7 @@ public class PhqActivity extends BaseActivity<ActivityPhqBinding, PhqViewModel> 
     }
 
     private void initQuestionNums() {
-        mQuestionNumAdapter = new QuestionNumAdapter(this, mQuestions, new QuestionNumAdapter.OnItemListener() {
+        mQuestionNumAdapter = new QuestionNumAdapter(ContextUtils.getContext(), mQuestions, new QuestionNumAdapter.OnItemListener() {
             @Override
             public void onItemListener(int position) {
                 smoothScrollToPosition(position);
@@ -79,7 +82,7 @@ public class PhqActivity extends BaseActivity<ActivityPhqBinding, PhqViewModel> 
     }
 
     private void initQuestions() {
-        mQuestionAdapter = new QuestionAdapter(this, mQuestions, new QuestionAdapter.OnItemListener() {
+        mQuestionAdapter = new QuestionAdapter(ContextUtils.getContext(), mQuestions, new QuestionAdapter.OnItemListener() {
             @Override
             public void onItemListener(int position) {
                 mQuestionNumAdapter.notifyItemChanged(position);
@@ -113,6 +116,14 @@ public class PhqActivity extends BaseActivity<ActivityPhqBinding, PhqViewModel> 
         });
     }
 
+    private void setObserveListener() {
+        getViewModel().isSubmitted().observe(this, isSubmitted -> {
+            if (isSubmitted) {
+                resetQuestion();
+            }
+        });
+    }
+
     private void setOnClickListener() {
         ListenerUtils.setOnClickListener(getBinding().ivBack, new OnMultiClickListener() {
             @Override
@@ -124,6 +135,27 @@ public class PhqActivity extends BaseActivity<ActivityPhqBinding, PhqViewModel> 
             @Override
             public void onMultiClick(View v) {
                 getViewModel().submit();
+            }
+        });
+    }
+
+    private void resetQuestion() {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                for (int i = 0; i < mQuestions.size(); i++) {
+                    Question question = mQuestions.get(i);
+                    question.setSelected(false);
+                    mQuestionNumAdapter.notifyItemChanged(i);
+                    for (int j = 0; j < question.getComponents().size(); j++) {
+                        Component component = question.getComponents().get(j);
+                        component.setSelected(false);
+                        ComponentAdapter componentAdapter = mQuestionAdapter.getComponentAdapter();
+                        if (componentAdapter != null) {
+                            componentAdapter.notifyItemChanged(j);
+                        }
+                    }
+                }
             }
         });
     }

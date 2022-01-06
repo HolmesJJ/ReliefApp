@@ -68,10 +68,10 @@ public class CheckInView extends FrameLayout {
     public void setCheckIn(boolean isCheckIn) {
         if (isCheckIn) {
             mIvIcon.setColorFilter(ContextCompat.getColor(mContext, R.color.light_green));
-            mFlCheckIn.setBackgroundColor(mContext.getColor(R.color.light_green));
+            mFlCheckIn.setBackgroundResource(R.drawable.bg_check_in_round);
         } else {
             mIvIcon.setColorFilter(ContextCompat.getColor(mContext, R.color.gray));
-            mFlCheckIn.setBackgroundColor(mContext.getColor(R.color.gray));
+            mFlCheckIn.setBackgroundResource(R.drawable.bg_not_check_in_round);
         }
     }
 }

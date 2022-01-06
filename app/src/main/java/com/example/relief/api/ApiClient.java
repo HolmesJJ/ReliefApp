@@ -78,7 +78,7 @@ public final class ApiClient {
     @NonNull
     public static Result<FaceBase64Result> uploadFace(String base64) {
         FaceBase64Parameter faceBase64Parameter = new FaceBase64Parameter();
-        faceBase64Parameter.setId(1);
+        faceBase64Parameter.setId(Config.getUserId());
         faceBase64Parameter.setBase64(base64);
         Request request = new Request().setPath(Constants.UPLOAD_FACE_URL)
                 .setMethod(Request.RequestMethod.POST.value())
@@ -89,7 +89,7 @@ public final class ApiClient {
     @NonNull
     public static Result<FacesUrlResult> emotionAnalysis() {
         FaceUrlParameter faceUrlParameter = new FaceUrlParameter();
-        faceUrlParameter.setUrl("https://cdn.discordapp.com/attachments/499918830999699470/928554855428153374/1.jpeg");
+        faceUrlParameter.setUrl(Constants.FACE_DIRECTORY_URL + Config.getUserId() + ".jpg");
         HashMap<String, String> headers = new HashMap<>();
         headers.put(Constants.EMOTION_KEY_CONTENT_TYPE, Constants.EMOTION_KEY_1);
         Request request = new Request().setPath(Constants.EMOTION_URL

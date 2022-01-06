@@ -11,6 +11,7 @@ import com.example.relief.BR;
 import com.example.relief.MainActivity;
 import com.example.relief.R;
 import com.example.relief.base.BaseFragment;
+import com.example.relief.config.Config;
 import com.example.relief.databinding.FragmentCheckInBinding;
 import com.example.relief.listener.OnMultiClickListener;
 import com.example.relief.ui.viewmodel.CheckInViewModel;
@@ -48,6 +49,7 @@ public class CheckInFragment extends BaseFragment<FragmentCheckInBinding, CheckI
     @Override
     public void initData() {
         super.initData();
+        updateStatus();
     }
 
     @Override
@@ -55,6 +57,12 @@ public class CheckInFragment extends BaseFragment<FragmentCheckInBinding, CheckI
         super.initViewObservable();
         setObserveListener();
         setOnClickListener();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        updateStatus();
     }
 
     private void setOnClickListener() {
@@ -113,5 +121,20 @@ public class CheckInFragment extends BaseFragment<FragmentCheckInBinding, CheckI
                 Log.e(TAG, "activityAction is null");
             }
         });
+    }
+
+    private void updateStatus() {
+        if (Config.isPhqDone()) {
+            getBinding().civPhq.setCheckIn(true);
+        }
+        if (Config.isEmotionDone()) {
+            getBinding().civEmotion.setCheckIn(true);
+        }
+        if (Config.isSentimentDone()) {
+            getBinding().civSentiment.setCheckIn(true);
+        }
+        if (Config.isMonitorDone()) {
+            getBinding().civMonitor.setCheckIn(true);
+        }
     }
 }

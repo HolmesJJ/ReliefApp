@@ -7,6 +7,7 @@ import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.MutableLiveData;
 import com.example.relief.MainActivity;
 import com.example.relief.base.BaseViewModel;
+import com.example.relief.config.Config;
 import com.example.relief.ui.activity.RegisterActivity;
 
 public class LoginViewModel extends BaseViewModel {
@@ -53,6 +54,8 @@ public class LoginViewModel extends BaseViewModel {
             return;
         }
         mIsShowLoading.postValue(true);
+        Config.setLogin(true);
+        Config.setUserId(1);
         mActivityAction.postValue(MainActivity.class);
     }
 

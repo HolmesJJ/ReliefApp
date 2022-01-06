@@ -55,7 +55,7 @@ public class InitViewModel extends BaseViewModel {
                     Config.setOcrRefreshToken(body.getRefreshToken());
                     Log.i(TAG, "Access Token: " + body.getAccessToken());
                     mIsInitSuccess.postValue(true);
-                    if (Config.getIsLogin()) {
+                    if (Config.isLogin()) {
                         mActivityAction.postValue(MainActivity.class);
                     } else {
                         mActivityAction.postValue(LoginActivity.class);

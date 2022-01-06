@@ -28,4 +28,12 @@
         <!-- 自己想要的背景 -->
         <item name="android:windowBackground">@android:color/transparent</item>
     </style>
+
+    <style name="ThemeSleepQualityScore" parent="AppTheme">
+        <item name="colorAccent">@color/light_green</item>
+    </style>
+
+    <style name="ThemeHeartRateScore" parent="AppTheme">
+        <item name="colorAccent">@color/light_green</item>
+    </style>
 </resources>

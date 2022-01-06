@@ -1,4 +1,4 @@
-package com.example.relief.model;
+package com.example.relief.model.phq;
 
 public class Component {
 

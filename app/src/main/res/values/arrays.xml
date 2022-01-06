@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="stressType">
+        <item>Study</item>
+        <item>Family</item>
+        <item>Friend</item>
+        <item>Finance</item>
+        <item>Partner</item>
+        <item>Work</item>
+        <item>Life</item>
+        <item>Other</item>
+    </string-array>
+    <string-array name="stressLevel">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+</resources>

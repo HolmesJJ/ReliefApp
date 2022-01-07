@@ -29,6 +29,12 @@ public final class Constants {
     public static final String EMOTION_KEY_1 = "b2447abafde745cba43a586888f4504b";
     public static final String EMOTION_KEY_2 = "3d0a62bf07934d3cab7b69a7e6ffeca7";
 
+    // Chatbot
+    public static final String CHATBOT_URL
+            = "https://silverplus-chatbot.azurewebsites.net/qnamaker/knowledgebases/65148328-b5b2-4ce6-831c-50499e296d93/generateAnswer";
+    public static final String CHATBOT_CONTENT_TYPE = "Authorization";
+    public static final String CHATBOT_KEY_1 = "EndpointKey 805d2b34-f07e-4148-93c2-bbd0e7317f72";
+
     private Constants() {
     }
 }

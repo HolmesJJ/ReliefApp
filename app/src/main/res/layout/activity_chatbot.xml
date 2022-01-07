@@ -43,7 +43,7 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:layout_margin="@dimen/dp_10"
-                android:padding="@dimen/dp_20"
+                android:padding="@dimen/dp_10"
                 android:background="@drawable/bg_rectangle_round">
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -72,6 +72,7 @@
             android:layout_alignParentBottom="true">
 
             <EditText
+                android:id="@+id/et_message"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="4"
@@ -83,7 +84,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="@dimen/dp_40"
-                android:background="@drawable/bg_btn_unable_round"
+                android:background="@drawable/bg_btn_enable_round"
                 android:stateListAnimator="@null"
                 android:text="@string/action_send"
                 android:textColor="@color/white"

@@ -1,6 +1,8 @@
 package com.example.relief.api;
 
 import androidx.annotation.NonNull;
+import com.example.relief.api.model.chatbot.AnswersResult;
+import com.example.relief.api.model.chatbot.QuestionParameter;
 import com.example.relief.api.model.emotion.FaceBase64Parameter;
 import com.example.relief.api.model.emotion.FaceBase64Result;
 import com.example.relief.api.model.emotion.FaceUrlParameter;
@@ -86,6 +88,19 @@ public final class ApiClient {
                 .setHeaderMap(headers)
                 .setMethod(Request.RequestMethod.POST.value())
                 .setBody(faceUrlParameter);
+        return ExecutorRequest.execute(request);
+    }
+
+    @NonNull
+    public static Result<AnswersResult> getAnswer(String question) {
+        QuestionParameter questionParameter = new QuestionParameter();
+        questionParameter.setQuestion(question);
+        HashMap<String, String> headers = new HashMap<>();
+        headers.put(Constants.CHATBOT_CONTENT_TYPE, Constants.CHATBOT_KEY_1);
+        Request request = new Request().setPath(Constants.CHATBOT_URL)
+                .setHeaderMap(headers)
+                .setMethod(Request.RequestMethod.POST.value())
+                .setBody(questionParameter);
         return ExecutorRequest.execute(request);
     }
 }

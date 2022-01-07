@@ -12,9 +12,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.nio.charset.StandardCharsets;
+import java.util.Map;
 
-public class HttpAsyncTaskPost extends AsyncTask<String, Void, String> {
+public class HttpAsyncTaskPost extends AsyncTask<Object, Void, String> {
 
     private static final String TAG = HttpAsyncTaskPost.class.getSimpleName();
     private final OnTaskCompleted listener;
@@ -25,10 +25,9 @@ public class HttpAsyncTaskPost extends AsyncTask<String, Void, String> {
         this.requestId = requestId;
     }
 
-    public static String post(String urlString, String data) {
+    public static String post(String urlString, byte[] data, Map<String, String> headers) {
         String result = "";
         try {
-            Log.d(TAG, "Sending data[" + data + "]");
             Log.d(TAG, "Sending url[" + urlString + "]");
             // create HttpPost
             URL url = new URL(urlString);
@@ -37,11 +36,13 @@ public class HttpAsyncTaskPost extends AsyncTask<String, Void, String> {
             try {
                 urlConnection.setRequestMethod("POST");
                 urlConnection.setDoOutput(true);
-                urlConnection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
                 urlConnection.setRequestProperty("Connection", "keep-alive");
                 urlConnection.setRequestProperty("Accept-Charset", "UTF-8");
+                for (Map.Entry<String, String> entry : headers.entrySet()) {
+                    urlConnection.setRequestProperty(entry.getKey(), entry.getValue());
+                }
                 DataOutputStream outputStream = new DataOutputStream(urlConnection.getOutputStream());
-                outputStream.write(data.getBytes(StandardCharsets.UTF_8));
+                outputStream.write(data);
                 outputStream.flush();
                 outputStream.close();
                 int code = urlConnection.getResponseCode();
@@ -81,8 +82,11 @@ public class HttpAsyncTaskPost extends AsyncTask<String, Void, String> {
 
     // doInBackground execute tasks when asynctask is run
     @Override
-    protected String doInBackground(String... parameters) {
-        return post(parameters[0], parameters[1]);
+    protected String doInBackground(Object... parameters) {
+        String url = (String) parameters[0];
+        byte[] data = (byte[]) parameters[1];
+        Map<String, String> headers = (Map<String, String>) parameters[2];
+        return post(url, data, headers);
     }
 
     // onPostExecute displays the results of the AsyncTask.

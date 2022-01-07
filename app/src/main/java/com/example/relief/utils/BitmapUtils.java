@@ -184,13 +184,7 @@ public final class BitmapUtils {
         return outputSteam.toByteArray();
     }
 
-    public static byte[] convertBitmapToJpeg(Bitmap bitmap) {
-        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
-        return stream.toByteArray();
-    }
-
     public static String convertBitmapToBase64(Bitmap bitmap) {
-        return Base64.encodeToString(convertBitmapToJpeg(bitmap), Base64.NO_WRAP);
+        return Base64.encodeToString(btmToBytes(bitmap), Base64.NO_WRAP);
     }
 }

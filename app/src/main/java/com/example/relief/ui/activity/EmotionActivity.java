@@ -194,7 +194,8 @@ public class EmotionActivity extends BaseActivity<ActivityEmotionBinding, Emotio
 
     private void setObserveListener() {
         getViewModel().getFaceBitmap().observe(this, bitmap -> {
-            getViewModel().uploadFace();
+            // getViewModel().uploadFace();
+            getViewModel().analysisByStream();
         });
         getViewModel().isAnalysing().observe(this, isAnalysing -> {
             mIsAnalyticsReady = false;
@@ -204,21 +205,21 @@ public class EmotionActivity extends BaseActivity<ActivityEmotionBinding, Emotio
         });
         getViewModel().getEmotion().observe(this, emotion -> {
             if (EmotionEnum.ANGER.getValue().equals(emotion)) {
-                getBinding().tvEmotion.setTextColor(getResources().getColor(R.color.light_green, this.getTheme()));
+                getBinding().tvEmotion.setTextColor(getResources().getColor(R.color.red, this.getTheme()));
             } else if (EmotionEnum.CONTEMPT.getValue().equals(emotion)) {
-                getBinding().tvEmotion.setTextColor(getResources().getColor(R.color.light_green, this.getTheme()));
+                getBinding().tvEmotion.setTextColor(getResources().getColor(R.color.light_red, this.getTheme()));
             } else if (EmotionEnum.DISGUST.getValue().equals(emotion)) {
                 getBinding().tvEmotion.setTextColor(getResources().getColor(R.color.light_green, this.getTheme()));
             } else if (EmotionEnum.FEAR.getValue().equals(emotion)) {
-                getBinding().tvEmotion.setTextColor(getResources().getColor(R.color.light_green, this.getTheme()));
+                getBinding().tvEmotion.setTextColor(getResources().getColor(R.color.purple, this.getTheme()));
             } else if (EmotionEnum.HAPPINESS.getValue().equals(emotion)) {
-                getBinding().tvEmotion.setTextColor(getResources().getColor(R.color.light_green, this.getTheme()));
+                getBinding().tvEmotion.setTextColor(getResources().getColor(R.color.golden_yellow, this.getTheme()));
             } else if (EmotionEnum.NEUTRAL.getValue().equals(emotion)) {
-                getBinding().tvEmotion.setTextColor(getResources().getColor(R.color.light_green, this.getTheme()));
+                getBinding().tvEmotion.setTextColor(getResources().getColor(R.color.light_yellow, this.getTheme()));
             } else if (EmotionEnum.SADNESS.getValue().equals(emotion)) {
-                getBinding().tvEmotion.setTextColor(getResources().getColor(R.color.light_green, this.getTheme()));
+                getBinding().tvEmotion.setTextColor(getResources().getColor(R.color.gray, this.getTheme()));
             } else if (EmotionEnum.SURPRISE.getValue().equals(emotion)) {
-                getBinding().tvEmotion.setTextColor(getResources().getColor(R.color.light_green, this.getTheme()));
+                getBinding().tvEmotion.setTextColor(getResources().getColor(R.color.light_blue, this.getTheme()));
             }
             getBinding().tvEmotion.setText(emotion);
         });

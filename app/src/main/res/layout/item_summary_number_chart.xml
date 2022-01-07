@@ -36,14 +36,14 @@
                 android:id="@+id/tv_content"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/sp_20"
+                android:textSize="@dimen/sp_18"
                 android:textColor="@color/teal_200"/>
 
             <TextView
                 android:id="@+id/tv_unit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/sp_20"
+                android:textSize="@dimen/sp_18"
                 android:textColor="@color/black"/>
 
         </LinearLayout>

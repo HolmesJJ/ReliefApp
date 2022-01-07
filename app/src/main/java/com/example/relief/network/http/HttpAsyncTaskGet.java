@@ -11,8 +11,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Map;
 
-public class HttpAsyncTaskGet extends AsyncTask<String, Void, String> {
+public class HttpAsyncTaskGet extends AsyncTask<Object, Void, String> {
 
     private static final String TAG = HttpAsyncTaskGet.class.getSimpleName();
 
@@ -24,7 +25,7 @@ public class HttpAsyncTaskGet extends AsyncTask<String, Void, String> {
         this.requestId = requestId;
     }
 
-    public static String get(String urlString) {
+    public static String get(String urlString, Map<String, String> headers) {
         String result = "";
         try {
             Log.d(TAG, "Sending url[" + urlString + "]");
@@ -34,6 +35,9 @@ public class HttpAsyncTaskGet extends AsyncTask<String, Void, String> {
             InputStream inputStream = null;
             try {
                 urlConnection.setRequestMethod("GET");
+                for (Map.Entry<String, String> entry : headers.entrySet()) {
+                    urlConnection.setRequestProperty(entry.getKey(), entry.getValue());
+                }
                 int code = urlConnection.getResponseCode();
                 if (code == 200) {
                     // receive response as inputStream
@@ -71,8 +75,8 @@ public class HttpAsyncTaskGet extends AsyncTask<String, Void, String> {
 
     // doInBackground execute tasks when asynctask is run
     @Override
-    protected String doInBackground(String... urls) {
-        return get(urls[0]);
+    protected String doInBackground(Object... parameters) {
+        return get((String) parameters[0], (Map<String, String>) parameters[1]);
     }
 
     // onPostExecute displays the results of the AsyncTask.

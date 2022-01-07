@@ -30,6 +30,9 @@ import com.example.relief.utils.ToastUtils;
 
 import java.io.InputStream;
 import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
+import java.util.Map;
 
 public class SentimentViewModel extends BaseViewModel implements OnTaskCompleted {
 
@@ -112,8 +115,11 @@ public class SentimentViewModel extends BaseViewModel implements OnTaskCompleted
                     String imgStr = Base64Utils.encode(imgData);
                     String imgParam = URLEncoder.encode(imgStr, "UTF-8");
                     String param = "image=" + imgParam;
+                    byte[] data = param.getBytes(StandardCharsets.UTF_8);
+                    Map<String, String> headers = new HashMap<>();
+                    headers.put("Content-Type", "application/x-www-form-urlencoded");
                     HttpAsyncTaskPost post = new HttpAsyncTaskPost(SentimentViewModel.this, OCR_REQUEST_ID);
-                    post.execute(Constants.OCR_STANDARD_URL + "access_token=" + Config.getOcrAccessToken(), param);
+                    post.execute(Constants.OCR_STANDARD_URL + "access_token=" + Config.getOcrAccessToken(), data, headers);
                 } catch (Exception e) {
                     isShowLoading().postValue(false);
                     ToastUtils.showShortSafe("OCR Error");

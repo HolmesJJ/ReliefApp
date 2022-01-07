@@ -80,13 +80,7 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
         }
         String avatar = "https://cdn.discordapp.com/attachments/499918830999699470/928643427694940160/holmesjj.png";
         Glide.with(this).load(avatar).circleCrop().into(getBinding().ivAvatar);
-        if (Config.isPhqDone() && Config.isEmotionDone() && Config.isSentimentDone() && Config.isMonitorDone()) {
-            getBinding().llNotCheckIn.setVisibility(View.GONE);
-            getBinding().llCheckIn.setVisibility(View.VISIBLE);
-        } else {
-            getBinding().llCheckIn.setVisibility(View.GONE);
-            getBinding().llNotCheckIn.setVisibility(View.VISIBLE);
-        }
+        updateStatus();
         initBanner();
         isRightVisited();
         initCalendar();
@@ -99,6 +93,12 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
         super.initViewObservable();
         setObserveListener();
         setOnClickListener();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        updateStatus();
     }
 
     @Override
@@ -280,4 +280,14 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
             }
         }
     };
+
+    private void updateStatus() {
+        if (Config.isPhqDone() && Config.isEmotionDone() && Config.isSentimentDone() && Config.isMonitorDone()) {
+            getBinding().llNotCheckIn.setVisibility(View.GONE);
+            getBinding().llCheckIn.setVisibility(View.VISIBLE);
+        } else {
+            getBinding().llCheckIn.setVisibility(View.GONE);
+            getBinding().llNotCheckIn.setVisibility(View.VISIBLE);
+        }
+    }
 }

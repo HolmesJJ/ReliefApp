@@ -4,31 +4,22 @@ import androidx.annotation.NonNull;
 
 public class MetadataResult {
 
-    private String name;
-    private String value;
+    private String editorial;
 
     public MetadataResult() {
     }
 
-    public String getName() {
-        return name;
+    public String getEditorial() {
+        return editorial;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getValue() {
-        return value;
-    }
-
-    public void setValue(String value) {
-        this.value = value;
+    public void setEditorial(String editorial) {
+        this.editorial = editorial;
     }
 
     @NonNull
     @Override
     public String toString() {
-        return "MetadataResult{" + "name='" + name + '\'' + ", value='" + value + '\'' + '}';
+        return "MetadataResult{" + "editorial='" + editorial + '\'' + '}';
     }
 }

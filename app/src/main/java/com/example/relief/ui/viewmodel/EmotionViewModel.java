@@ -29,6 +29,7 @@ public class EmotionViewModel extends BaseViewModel implements OnTaskCompleted {
 
     private static final String TAG = EmotionViewModel.class.getSimpleName();
     private static final int EMOTION_REQUEST_ID = 100;
+    private static final boolean IS_MOCK = true;
 
     private final MutableLiveData<Bitmap> mFaceBitmap = new MutableLiveData<>();
     private final MutableLiveData<String> mEmotion = new MutableLiveData<>();
@@ -88,6 +89,18 @@ public class EmotionViewModel extends BaseViewModel implements OnTaskCompleted {
         ThreadManager.getThreadPollProxy().execute(new Runnable() {
             @Override
             public void run() {
+                if (IS_MOCK) {
+                    try {
+                        Thread.sleep(3000);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    mock();
+                    return;
+                }
+                // Return Attributes (emotion, gender, age, smile, facial hair, hair and makeup)
+                // have been deprecated and are no longer supported. For more information,
+                // please see https://aka.ms/facerecognition.
                 byte[] data = BitmapUtils.btmToBytes(mFaceBitmap.getValue());
                 Map<String, String> headers = new HashMap<>();
                 headers.put("Content-Type", "application/octet-stream");
@@ -183,5 +196,13 @@ public class EmotionViewModel extends BaseViewModel implements OnTaskCompleted {
                 mSuggestion.postValue("Sometimes the most shocking surprises are also the most beautiful surprises.");
             }
         }
+    }
+
+    private void mock() {
+        mSmile.postValue(0.001);
+        mEmotion.postValue("sadness");
+        mSuggestion.postValue("Don’t be sad, tomorrow and forever, we will be together.");
+        Config.setEmotionDone(true);
+        mIsAnalysing.postValue(false);
     }
 }

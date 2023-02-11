@@ -9,11 +9,10 @@ public class AnswerResult {
     private int id;
     private List<String> questions;
     private String answer;
-    private double score;
+    private double confidenceScore;
     private String source;
-    private boolean isDocumentText;
     private List<MetadataResult> metadata;
-    private ContextResult context;
+    private DialogResult dialog;
 
     public AnswerResult() {
     }
@@ -42,12 +41,12 @@ public class AnswerResult {
         this.answer = answer;
     }
 
-    public double getScore() {
-        return score;
+    public double getConfidenceScore() {
+        return confidenceScore;
     }
 
-    public void setScore(double score) {
-        this.score = score;
+    public void setConfidenceScore(double confidenceScore) {
+        this.confidenceScore = confidenceScore;
     }
 
     public String getSource() {
@@ -58,14 +57,6 @@ public class AnswerResult {
         this.source = source;
     }
 
-    public boolean isDocumentText() {
-        return isDocumentText;
-    }
-
-    public void setDocumentText(boolean documentText) {
-        isDocumentText = documentText;
-    }
-
     public List<MetadataResult> getMetadata() {
         return metadata;
     }
@@ -74,20 +65,19 @@ public class AnswerResult {
         this.metadata = metadata;
     }
 
-    public ContextResult getContext() {
-        return context;
+    public DialogResult getDialog() {
+        return dialog;
     }
 
-    public void setContext(ContextResult context) {
-        this.context = context;
+    public void setDialog(DialogResult dialog) {
+        this.dialog = dialog;
     }
 
     @NonNull
-
     @Override
     public String toString() {
         return "AnswerResult{" + "id=" + id + ", questions=" + questions + ", answer='" + answer + '\''
-                + ", score=" + score + ", source='" + source + '\'' + ", isDocumentText=" + isDocumentText
-                + ", metadata=" + metadata + ", context=" + context + '}';
+                + ", confidenceScore=" + confidenceScore + ", source='" + source + '\''
+                + ", metadata=" + metadata + ", dialog=" + dialog + '}';
     }
 }

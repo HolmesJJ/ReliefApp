@@ -7,7 +7,6 @@ import java.util.List;
 public class AnswersResult {
 
     private List<AnswerResult> answers;
-    private boolean activeLearningEnabled;
 
     public AnswersResult() {
     }
@@ -20,17 +19,9 @@ public class AnswersResult {
         this.answers = answers;
     }
 
-    public boolean isActiveLearningEnabled() {
-        return activeLearningEnabled;
-    }
-
-    public void setActiveLearningEnabled(boolean activeLearningEnabled) {
-        this.activeLearningEnabled = activeLearningEnabled;
-    }
-
     @NonNull
     @Override
     public String toString() {
-        return "AnswersResult{" + "answers=" + answers + ", activeLearningEnabled=" + activeLearningEnabled + '}';
+        return "AnswersResult{" + "answers=" + answers + '}';
     }
 }

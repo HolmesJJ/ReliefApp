@@ -97,11 +97,15 @@ public final class ApiClient {
         questionParameter.setQuestion(question);
         HashMap<String, String> headers = new HashMap<>();
         headers.put(Constants.CHATBOT_CONTENT_TYPE, Constants.CHATBOT_KEY_1);
-        Request request = new Request().setPath(Constants.CHATBOT_URL)
+        Request request = new Request().setPath(Constants.CHATBOT_URL
+                // Language Studio
+                // https://language.cognitive.azure.com/questionAnswering/projects/reliefsg-search/deploy
+                + "projectName=" + "reliefsg-search"
+                + "&api-version=" + "2021-10-01"
+                + "&deploymentName=" + "production")
                 .setHeaderMap(headers)
                 .setMethod(Request.RequestMethod.POST.value())
                 .setBody(questionParameter);
         return ExecutorRequest.execute(request);
     }
 }
-

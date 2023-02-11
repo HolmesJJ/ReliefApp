@@ -4,12 +4,12 @@ import androidx.annotation.NonNull;
 
 import java.util.List;
 
-public class ContextResult {
+public class DialogResult {
 
     private boolean isContextOnly;
     private List<PromptResult> prompts;
 
-    public ContextResult() {
+    public DialogResult() {
     }
 
     public boolean isContextOnly() {
